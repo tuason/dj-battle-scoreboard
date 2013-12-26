@@ -29,7 +29,7 @@ import java.util.List;
  */
 public class DataHandler {
     
-    private MainController mMainController;
+    private final MainController mMainController;
 
     private VoteHandler mVoteHandler;
     
@@ -64,7 +64,7 @@ public class DataHandler {
     
     
     public List<String> getDJNamesWithSoundStyle() {
-        List<String> result = new ArrayList<String>();
+        List<String> result = new ArrayList<>();
         if (getDJList() != null && !getDJList().isEmpty()) {
             for (DjEntity dj : getDJList()) {
                 result.add(dj.getDjNameWithSoundStyle());
@@ -92,7 +92,7 @@ public class DataHandler {
      */
     private void setupDefaultData() {
         if (mDjs == null)
-            mDjs = new ArrayList<DjEntity>();
+            mDjs = new ArrayList<>();
         
         DjEntity djOne = new DjEntity();
         djOne.setId(new Long(1));

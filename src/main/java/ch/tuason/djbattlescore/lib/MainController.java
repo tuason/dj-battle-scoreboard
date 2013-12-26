@@ -28,7 +28,7 @@ import ch.tuason.djbattlescore.lib.data.DataHandler;
  */
 public class MainController {
     
-    private MainApp mMainApplication;
+    private final MainApp mMainApplication;
     
     private DataHandler mDataHandler;
     private ComponentHandler mComponentHandler;

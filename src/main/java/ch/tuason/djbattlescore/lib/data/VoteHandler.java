@@ -27,7 +27,7 @@ import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
  */
 public class VoteHandler {
     
-    private DataHandler mDataHandler;
+    private final DataHandler mDataHandler;
     
     // private Map<DjEntity, Long> mVotes;
     

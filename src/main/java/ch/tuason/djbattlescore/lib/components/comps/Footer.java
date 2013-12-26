@@ -34,8 +34,8 @@ public class Footer extends HBox {
     private Button resetButton;
     private Button exitButton;
     
-    private EventHandler<ActionEvent> resetButtonEventHandler;
-    private EventHandler<ActionEvent> exitButtonEventHandler;
+    private final EventHandler<ActionEvent> resetButtonEventHandler;
+    private final EventHandler<ActionEvent> exitButtonEventHandler;
     
     /**
      * constructor
