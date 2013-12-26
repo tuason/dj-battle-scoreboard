@@ -19,12 +19,11 @@
 package ch.tuason.djbattlescore.lib.components.comps;
 
 import ch.tuason.djbattlescore.lib.DjBattleConstants;
-import ch.tuason.djbattlescore.lib.components.ComponentHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -32,44 +31,33 @@ import javafx.scene.text.Font;
  *
  * @author maesi
  */
-public class ResultGridPane extends GridPane {
-    
-    private ComponentHandler mParent;
-    
-    private Label resultLabel;
+public class Header extends HBox {
 
     /**
      * constructor
      * 
-     * @param componentHandler 
      */
-    public ResultGridPane(ComponentHandler componentHandler) {
+    public Header() {
         super();
-        
-        this.mParent = componentHandler;
-        
-        this.setPadding(new Insets(40, 0, 0, 50));
-        this.setHgap(5);
-        this.setVgap(5);
-        
-        
-
-        add(getResultLabel(), 0, 0);
+        initializeHeader();
     }
     
-    
-    
-    private Label getResultLabel() {
+    /**
+     * set up all components and the look and feel...
+     */    
+    private void initializeHeader() {
+        setPadding(new Insets(15, 12, 15, 12));
+        setSpacing(10);
+        setStyle(DjBattleConstants.FOOTER_AND_HEADER_BACKGROUND_STYLE);
         
-        if (resultLabel == null) {
-            Image image = new Image(getClass().getResourceAsStream(
-                    DjBattleConstants.IMAGE_RESOURCE_TURNTABLE_LOGO));
-            resultLabel = new Label("Current Result", new ImageView(image));
-            resultLabel.setFont(new Font("Arial", 20));
-            resultLabel.setTextFill(Color.web(
-                    DjBattleConstants.COLOR_RESULT_TITLE_TEXT));
-        }    
-        return resultLabel;
+        Image imageKurhaus = new Image("/images/kurhaus_logo.png");
+        Label title = new Label("  ...::: DJ Battle Scoreboard :::...", new ImageView(imageKurhaus));
+        
+        title.setFont(new Font("Arial", 40));
+        title.setTextFill(Color.web("#FFFFFF"));
+        
+        getChildren().addAll(title);
     }
+    
     
 }

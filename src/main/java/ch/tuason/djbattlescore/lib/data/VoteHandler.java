@@ -18,10 +18,8 @@
 
 package ch.tuason.djbattlescore.lib.data;
 
+import ch.tuason.djbattlescore.lib.DjBattleConstants;
 import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -31,7 +29,7 @@ public class VoteHandler {
     
     private DataHandler mDataHandler;
     
-    private Map<DjEntity, Long> mVotes;
+    // private Map<DjEntity, Long> mVotes;
     
     
     public VoteHandler(DataHandler parent) {
@@ -39,27 +37,33 @@ public class VoteHandler {
     }
     
     
-    
+    /*
     private Map<DjEntity, Long> getVotes() {
         if (mVotes == null) {
             mVotes = new HashMap<>();
         }
         return mVotes;
     }
+    */
     
-    
+    /*
     public void setUpVotesTable(List<DjEntity> djs) {
         getVotes().clear();
         for (DjEntity dj : djs) {
             getVotes().put(dj, 0L);
         }
     }
-    
+    */
     
     public void clearAllVotesBackToZero() {
-        if (!getVotes().isEmpty()) {
-            for (Map.Entry<DjEntity, Long> entry : getVotes().entrySet()) {
-                entry.setValue(0L);
+        //if (!getVotes().isEmpty()) {
+        //    for (Map.Entry<DjEntity, Long> entry : getVotes().entrySet()) {
+        //        entry.setValue(1L);
+        //    }
+        //}
+        for (DjEntity dj : getDataHandler().getDJList()) {
+            if (dj != null) {
+                dj.setVotes(DjBattleConstants.START_NUMBER_FOR_VOTES);
             }
         }
     }

@@ -30,7 +30,7 @@ public class MainApp extends Application {
         // root.getChildren().add(btn);
         root.getChildren().add(getController().getComponentHandler().getMainLayout());
         
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 1024, 800);
         
         stage.setTitle(cTITLE);
         stage.setScene(scene);

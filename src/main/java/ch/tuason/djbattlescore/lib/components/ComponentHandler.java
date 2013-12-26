@@ -22,6 +22,7 @@ import ch.tuason.djbattlescore.lib.components.comps.Footer;
 import ch.tuason.djbattlescore.lib.components.comps.MainLayoutPane;
 import ch.tuason.djbattlescore.lib.components.comps.BattleBarChart;
 import ch.tuason.djbattlescore.lib.MainController;
+import ch.tuason.djbattlescore.lib.components.comps.Header;
 import ch.tuason.djbattlescore.lib.components.comps.ResultGridPane;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -38,6 +39,7 @@ public class ComponentHandler {
     private MainLayoutPane mMainLayout;
     
     // private Button sayHiButton;
+    private Header header;
     private BattleBarChart scoreBoardChart;
     private ResultGridPane resultLayout;
     private Footer footer;
@@ -112,6 +114,7 @@ public class ComponentHandler {
 
                 @Override
                 public void handle(ActionEvent t) {
+                    
                     Platform.exit();
                 }
                 
@@ -119,13 +122,24 @@ public class ComponentHandler {
 
                 @Override
                 public void handle(ActionEvent t) {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                    getController().getComponentHandler().getScoreBoardChart().resetChartAndAllData();       
                 }
             });
         }
         return footer;
     }
     
+    
+    /**
+     * returns the title box with logo and label...
+     * @return 
+     */
+    public Header getHeader() {
+        if (header == null) {
+            header = new Header();
+        }
+        return header;
+    }
    
     /*
     public Button getSayHiButton() {

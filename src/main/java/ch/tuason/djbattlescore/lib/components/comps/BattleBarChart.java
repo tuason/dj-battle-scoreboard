@@ -56,7 +56,7 @@ public class BattleBarChart extends StackedBarChart {
         //getXAxisObject().setLabel("DJ");
         getYAxisObject().setLabel("Votes");
         
-        this.setTitle("..:: DJ Battle Scoreboard - Kurhaus Lenzerheide ::..");
+        // this.setTitle("..:: DJ Battle Scoreboard - Kurhaus Lenzerheide ::..");
         
         this.setLegendVisible(false);
         
@@ -71,6 +71,13 @@ public class BattleBarChart extends StackedBarChart {
         // getData().addAll(addDataToSerie(dataSerie));
         
         //dataSerie.getData().add(this) 
+    }
+    
+    
+    
+    public final void resetChartAndAllData() {
+        getController().getDataHandler().getVoteHandler().clearAllVotesBackToZero();
+        updateChartWithCurrentData();
     }
     
     
