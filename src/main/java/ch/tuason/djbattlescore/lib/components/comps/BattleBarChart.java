@@ -16,7 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package ch.tuason.djbattlescore.lib.components;
+package ch.tuason.djbattlescore.lib.components.comps;
 
 import ch.tuason.djbattlescore.lib.MainController;
 import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
@@ -136,12 +136,8 @@ public class BattleBarChart extends StackedBarChart {
                     // System.out.println("openDetailsScreen(<selected Bar>)");
                     System.out.println(seriesData.getXValue() + " : " + seriesData.getYValue());
                     
-                    // TODO update the dj data object for the clicked bar/dj!
-                    // 
-                    DjEntity dj = getController().getDataHandler().getDjEntityWithName(seriesData.getXValue());
-                    if (dj != null) {
-                        dj.setVotes(dj.getVotes() + 1);
-                    }
+                    // we update the dj data object for the clicked bar/dj!
+                    getController().getDataHandler().getVoteHandler().increaseVotesForDj(seriesData.getXValue());
                     
                     int numberOfVotes = seriesData.getYValue().intValue();
                     

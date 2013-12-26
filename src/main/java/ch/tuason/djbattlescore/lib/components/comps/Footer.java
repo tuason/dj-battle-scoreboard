@@ -16,7 +16,7 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package ch.tuason.djbattlescore.lib.components;
+package ch.tuason.djbattlescore.lib.components.comps;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

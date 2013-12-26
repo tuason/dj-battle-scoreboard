@@ -16,8 +16,9 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
-package ch.tuason.djbattlescore.lib.components;
+package ch.tuason.djbattlescore.lib.components.comps;
 
+import ch.tuason.djbattlescore.lib.components.ComponentHandler;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -39,6 +40,7 @@ public class MainLayoutPane extends BorderPane {
     
     private void initializeMainLayoutPane() {
         setCenter(getComponentHandler().getScoreBoardChart());
+        setRight(getComponentHandler().getResultLayout());
         setBottom(getComponentHandler().getFooter());
     }
     

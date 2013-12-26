@@ -31,6 +31,7 @@ public class DataHandler {
     
     private MainController mMainController;
 
+    private VoteHandler mVoteHandler;
     
     private List<DjEntity> mDjs;
 
@@ -45,6 +46,13 @@ public class DataHandler {
         this.mMainController = controller;
     }
     
+    
+    public VoteHandler getVoteHandler() {
+        if (mVoteHandler == null) {
+            mVoteHandler = new VoteHandler(this);
+        }
+        return mVoteHandler;
+    }
     
     private void setupDefaultData() {
         if (mDjs == null)

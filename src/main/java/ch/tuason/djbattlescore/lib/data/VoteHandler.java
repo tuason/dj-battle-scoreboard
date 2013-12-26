@@ -65,6 +65,16 @@ public class VoteHandler {
     }
     
     
+    public void increaseVotesForDj(String DjIdentifier) {
+        DjEntity dj = getDataHandler().getDjEntityWithName(DjIdentifier);
+        if (dj != null) {
+            dj.setVotes(dj.getVotes() + 1);
+        }
+    }
     
     
+    
+    private DataHandler getDataHandler() {
+        return this.mDataHandler;
+    }
 }

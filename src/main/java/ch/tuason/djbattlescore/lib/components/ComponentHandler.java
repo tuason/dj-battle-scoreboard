@@ -18,11 +18,14 @@
 
 package ch.tuason.djbattlescore.lib.components;
 
+import ch.tuason.djbattlescore.lib.components.comps.Footer;
+import ch.tuason.djbattlescore.lib.components.comps.MainLayoutPane;
+import ch.tuason.djbattlescore.lib.components.comps.BattleBarChart;
 import ch.tuason.djbattlescore.lib.MainController;
+import ch.tuason.djbattlescore.lib.components.comps.ResultGridPane;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
 
 /**
  *
@@ -36,6 +39,7 @@ public class ComponentHandler {
     
     // private Button sayHiButton;
     private BattleBarChart scoreBoardChart;
+    private ResultGridPane resultLayout;
     private Footer footer;
     
     /**
@@ -73,6 +77,18 @@ public class ComponentHandler {
         return scoreBoardChart;
     }
     
+    
+    /**
+     * returns the layout with the current results / standings...
+     * 
+     * @return 
+     */
+    public ResultGridPane getResultLayout() {
+        if (resultLayout == null) {
+            resultLayout = new ResultGridPane(this);
+        }
+        return resultLayout;
+    }
     
     /*
     public BarChart getScoreBoardChartOriginalStyle() {
