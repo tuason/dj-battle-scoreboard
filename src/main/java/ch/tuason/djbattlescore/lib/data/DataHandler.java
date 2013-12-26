@@ -54,6 +54,42 @@ public class DataHandler {
         return mVoteHandler;
     }
     
+    
+    public List<DjEntity> getDJList() {
+        if (mDjs == null) {
+            setupDefaultData();
+        }
+        return mDjs;
+    }
+    
+    
+    public List<String> getDJNamesWithSoundStyle() {
+        List<String> result = new ArrayList<String>();
+        if (getDJList() != null && !getDJList().isEmpty()) {
+            for (DjEntity dj : getDJList()) {
+                result.add(dj.getDjNameWithSoundStyle());
+            }
+        }
+        return result;
+    }
+    
+    
+    public DjEntity getDjEntityWithName(String nameAndSoundStyle) {
+        for (DjEntity dj : getDJList()) {
+            if (dj.getDjNameWithSoundStyle().equals(nameAndSoundStyle))
+                return dj;
+        }
+        return null;
+    }
+    
+    
+    
+    
+    /**
+     * this method helps to fill test data to the app...
+     * 
+     * // TODO we need to read the data out of a config file or better a csv text file!
+     */
     private void setupDefaultData() {
         if (mDjs == null)
             mDjs = new ArrayList<DjEntity>();
@@ -92,33 +128,5 @@ public class DataHandler {
         djFive.setSoundStyle("Electro");
         djFive.setVotes(21);
         mDjs.add(djFive);
-    }
-    
-    
-    public List<DjEntity> getDJList() {
-        if (mDjs == null) {
-            setupDefaultData();
-        }
-        return mDjs;
-    }
-    
-    
-    public List<String> getDJNamesWithSoundStyle() {
-        List<String> result = new ArrayList<String>();
-        if (getDJList() != null && !getDJList().isEmpty()) {
-            for (DjEntity dj : getDJList()) {
-                result.add(dj.getDjNameWithSoundStyle());
-            }
-        }
-        return result;
-    }
-    
-    
-    public DjEntity getDjEntityWithName(String nameAndSoundStyle) {
-        for (DjEntity dj : getDJList()) {
-            if (dj.getDjNameWithSoundStyle().equals(nameAndSoundStyle))
-                return dj;
-        }
-        return null;
     }
 }
