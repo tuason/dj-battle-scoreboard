@@ -1,0 +1,136 @@
+/*
+ * Copyright (C) 2013 Tuason Software Inc.
+ *
+ * This program is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU General Public License
+ * as published by the Free Software Foundation; either version 2
+ * of the License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ */
+
+package ch.tuason.djbattlescore.lib.components;
+
+import ch.tuason.djbattlescore.lib.MainController;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Button;
+
+/**
+ *
+ * @author maesi
+ */
+public class ComponentHandler {
+   
+    private final MainController mMainController;
+
+    private MainLayoutPane mMainLayout;
+    
+    // private Button sayHiButton;
+    private BattleBarChart scoreBoardChart;
+    private Footer footer;
+    
+    /**
+     * constructor
+     * 
+     * @param controller 
+     */
+    public ComponentHandler(MainController controller) {
+        this.mMainController = controller;
+    }
+    
+    
+    /**
+     * returns the main layout...
+     * @return 
+     */
+    public MainLayoutPane getMainLayout() {
+        if (mMainLayout == null) {
+            mMainLayout = new MainLayoutPane(this);
+        }
+        return mMainLayout;
+    }
+    
+    
+    
+    /**
+     * returns the bar chart component...
+     * 
+     * @return 
+     */
+    public BattleBarChart getScoreBoardChart() {
+        if (scoreBoardChart == null) {
+            scoreBoardChart = new BattleBarChart(getController());
+        }
+        return scoreBoardChart;
+    }
+    
+    
+    /*
+    public BarChart getScoreBoardChartOriginalStyle() {
+        if (scoreBoardChart == null) {
+            
+            final NumberAxis yAxis = new NumberAxis();
+            final CategoryAxis xAxis = new CategoryAxis();
+            
+            scoreBoardChart = new BarChart(xAxis, yAxis);
+            scoreBoardChart.setTitle("Kurhaus DJ Battle Scoreboard");
+        }
+        return scoreBoardChart;
+    }
+    */
+    
+    
+    
+    public Footer getFooter() {
+        if (footer == null) {
+            footer = new Footer(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent t) {
+                    Platform.exit();
+                }
+                
+            }, new EventHandler<ActionEvent>() { 
+
+                @Override
+                public void handle(ActionEvent t) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            });
+        }
+        return footer;
+    }
+    
+   
+    /*
+    public Button getSayHiButton() {
+        if (sayHiButton == null) {
+            sayHiButton = new Button();
+            sayHiButton.setText("Say 'Hi Kurhaus'");
+            sayHiButton.setOnAction(new EventHandler<ActionEvent>() {
+
+                @Override
+                public void handle(ActionEvent event) {
+                    System.out.println("Hi, this is the Kurhaus scoreboard!");
+                }
+            });
+        }
+        return sayHiButton;
+        
+    }
+    */
+    
+    
+    private MainController getController() {
+        return this.mMainController;
+    }
+}
