@@ -30,6 +30,7 @@ import javafx.scene.chart.StackedBarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.effect.Glow;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
 
 /**
  *
@@ -193,6 +194,8 @@ public class BattleBarChart extends StackedBarChart {
     protected static CategoryAxis getXAxisObject() {
         if (xAxis == null) {
             xAxis = new CategoryAxis();
+            
+            xAxis.setTickLabelFont(new Font("Arial", 13));
         }
         return xAxis;
     }
