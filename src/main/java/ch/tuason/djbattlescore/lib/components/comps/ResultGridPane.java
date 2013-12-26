@@ -29,6 +29,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
@@ -42,7 +43,7 @@ public class ResultGridPane extends GridPane {
     private Label resultLabel;
     
     private Collection<DjEntity> currentDjRanking;
-    private ArrayList<Label> addedRankingComponents = new ArrayList<Label>();
+    private final ArrayList<HBox> addedRankingComponents = new ArrayList<>();
 
     /**
      * constructor
@@ -54,7 +55,7 @@ public class ResultGridPane extends GridPane {
         
         this.mParent = componentHandler;
         
-        this.setPadding(new Insets(40, 20, 10, 40));
+        this.setPadding(new Insets(40, 20, 10, 20)); // top, right, bottom, left...
         this.setHgap(5);
         this.setVgap(5);
      
@@ -68,9 +69,19 @@ public class ResultGridPane extends GridPane {
         if (this.currentDjRanking != null && !this.currentDjRanking.isEmpty()) {
             int iPos = 1;
             for (DjEntity dj : this.currentDjRanking) {
-                Label component = new Label(dj.getDjNameWithSoundStyle());
-                this.addedRankingComponents.add(component);
-                this.add(component, 0, iPos);
+                Image djImage = new Image(getClass().getResourceAsStream(
+                    DjBattleConstants.IMAGE_RESOURCE_TURNTABLE_LOGO_32));
+                
+                HBox djComponent = new HBox();
+                djComponent.setPadding(new Insets(5, 0, 0, 20));
+                
+                Label djLabel = new Label(dj.getDjNameWithSoundStyle(), new ImageView(djImage));
+                djLabel.setFont(new Font("Arial", 20));
+                // component.setTextFill(Color.web(DjBattleConstants.COLOR_RESULT_TITLE_TEXT));
+                djComponent.getChildren().add(djLabel);
+                
+                this.addedRankingComponents.add(djComponent);
+                this.add(djComponent, 0, iPos);
                 iPos++;
             }
         }
@@ -83,15 +94,9 @@ public class ResultGridPane extends GridPane {
             DjEntity[] ranking = currentDjRanking.toArray(new DjEntity[0]);
             int iPos = 0;
             for (DjEntity dj : getController().getDataHandler().getSortedAfterRankDjList()) {
-                if (!dj.getId().equals(ranking[iPos].getId())) {
-                    //return true;
-                    
-                    if (dj.getVotes() == ranking[iPos].getVotes()) {
-                        return false;
-                    } else {
-                        return true;
-                    }
-                   
+                if (!dj.getId().equals(ranking[iPos].getId())) {                    
+                    // as we want the leader only be changed when more votes, let us check here first!
+                    return dj.getVotes() != ranking[iPos].getVotes();
                 }
                 iPos++;
             }
@@ -109,9 +114,9 @@ public class ResultGridPane extends GridPane {
         
         if (resultLabel == null) {
             Image image = new Image(getClass().getResourceAsStream(
-                    DjBattleConstants.IMAGE_RESOURCE_TURNTABLE_LOGO));
+                    DjBattleConstants.IMAGE_RESOURCE_TURNTABLE_LOGO_48));
             resultLabel = new Label("Current Ranking", new ImageView(image));
-            resultLabel.setFont(new Font("Arial", 20));
+            resultLabel.setFont(new Font("Arial", 30));
             resultLabel.setTextFill(Color.web(
                     DjBattleConstants.COLOR_RESULT_TITLE_TEXT));
         }    

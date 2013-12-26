@@ -42,7 +42,7 @@ public interface DjBattleConstants {
     
     // IMAGE CONSTANTS...
     public static final String IMAGE_RESOURCE_LOGO_KURHAUS = "/images/kurhaus_logo.png";
-    public static final String IMAGE_RESOURCE_TURNTABLE_LOGO = "/images/turntables32.jpg";
-    
+    public static final String IMAGE_RESOURCE_TURNTABLE_LOGO_32 = "/images/turntables32.jpg";
+    public static final String IMAGE_RESOURCE_TURNTABLE_LOGO_48 = "/images/turntables48.jpg";
     
 }

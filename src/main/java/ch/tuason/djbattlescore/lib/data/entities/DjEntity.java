@@ -30,7 +30,7 @@ public class DjEntity implements Comparable {
     private String name;
     private String soundStyle;
     private int votes;
-    private int rank;
+    //private int rank;
 
     public Long getId() {
         return id;
@@ -64,6 +64,7 @@ public class DjEntity implements Comparable {
         this.votes = votes;
     }
 
+    /*
     public int getRank() {
         return rank;
     }
@@ -71,6 +72,7 @@ public class DjEntity implements Comparable {
     public void setRank(int rank) {
         this.rank = rank;
     }
+    */
     
     
     
