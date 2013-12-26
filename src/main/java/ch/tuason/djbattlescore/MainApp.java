@@ -1,5 +1,6 @@
 package ch.tuason.djbattlescore;
 
+import ch.tuason.djbattlescore.lib.DjBattleConstants;
 import ch.tuason.djbattlescore.lib.MainController;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
@@ -9,11 +10,6 @@ import javafx.stage.Stage;
 
 
 public class MainApp extends Application {
-    
-    private final String cTITLE = "...::: DJ Battle Scoreboard - Kurhaus Lenzerheide :::...";
-    
-    //private final String cCSS_FILE_RESOURCE = "/styles/Styles.css";
-    //private final String cFXML_FILE_RESOURCE = "/fxml/Scene.fxml";
   
     private MainController mMainController;
     
@@ -32,7 +28,7 @@ public class MainApp extends Application {
         
         Scene scene = new Scene(root, 1024, 800);
         
-        stage.setTitle(cTITLE);
+        stage.setTitle(DjBattleConstants.APPLICATION_TITLE);
         stage.setScene(scene);
         stage.show();
     }

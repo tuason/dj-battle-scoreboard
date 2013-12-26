@@ -21,6 +21,7 @@ package ch.tuason.djbattlescore.lib.data;
 import ch.tuason.djbattlescore.lib.MainController;
 import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -62,6 +63,12 @@ public class DataHandler {
         return mDjs;
     }
     
+    
+    public List<DjEntity> getSortedAfterRankDjList() {
+        ArrayList<DjEntity> result = new ArrayList<DjEntity>(getDJList());
+        Collections.sort(result);
+        return result;
+    }
     
     public List<String> getDJNamesWithSoundStyle() {
         List<String> result = new ArrayList<>();

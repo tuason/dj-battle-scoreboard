@@ -24,12 +24,13 @@ import java.beans.Transient;
  *
  * @author maesi
  */
-public class DjEntity {
+public class DjEntity implements Comparable {
     
     private Long id;
     private String name;
     private String soundStyle;
     private int votes;
+    private int rank;
 
     public Long getId() {
         return id;
@@ -62,6 +63,15 @@ public class DjEntity {
     public void setVotes(int votes) {
         this.votes = votes;
     }
+
+    public int getRank() {
+        return rank;
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
+    }
+    
     
     
     
@@ -69,5 +79,33 @@ public class DjEntity {
     public String getDjNameWithSoundStyle() {
         return this.getName() + " (" + this.getSoundStyle() + ")";
     }
-    
+
+    @Override
+    public int compareTo(Object o) {
+        if (! (o instanceof DjEntity)) {
+            return -1;
+        }
+        
+        DjEntity compareObject = (DjEntity) o;
+        
+        if (getVotes() < compareObject.getVotes()) {
+            return +1;
+        } else if (getVotes() == compareObject.getVotes()) {
+            return 0;
+        } else if (getVotes() > compareObject.getVotes()) {
+            return -1;
+        }
+        
+        /*
+        if (getRank() < compareObject.getRank()) {
+            return +1;
+        } else if (getRank() == compareObject.getRank()) {
+            return 0;
+        } else if (getRank() > compareObject.getRank()) {
+            return -1;
+        }
+        */
+        
+        return -1;
+    }
 }

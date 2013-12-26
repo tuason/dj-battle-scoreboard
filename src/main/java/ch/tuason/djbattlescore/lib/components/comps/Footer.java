@@ -22,6 +22,7 @@ import ch.tuason.djbattlescore.lib.DjBattleConstants;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 
@@ -52,11 +53,11 @@ public class Footer extends HBox {
     }
     
     
-    
     private void initializeFooter() {
         setPadding(new Insets(15, 12, 15, 12));
         setSpacing(10);
         setStyle(DjBattleConstants.FOOTER_AND_HEADER_BACKGROUND_STYLE);
+        setAlignment(Pos.CENTER_RIGHT);
         getChildren().addAll(getResetButton(), getExitButton());
     }
     

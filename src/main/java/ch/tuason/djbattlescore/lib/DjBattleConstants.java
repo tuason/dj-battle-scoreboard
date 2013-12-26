@@ -25,7 +25,15 @@ package ch.tuason.djbattlescore.lib;
 public interface DjBattleConstants {
     
     // APPLICATION VARIABLES...
+    public static final String APPLICATION_TITLE = "...::: DJ Battle Scoreboard - Kurhaus Lenzerheide :::...";
+    
+    // private final String cCSS_FILE_RESOURCE = "/styles/Styles.css";
+    // private final String cFXML_FILE_RESOURCE = "/fxml/Scene.fxml";
+
     public static final Integer START_NUMBER_FOR_VOTES = 10;
+    
+    public static final Integer CHART_STANDARD_TICK_UNIT_STEPS = 10;
+    public static final Integer CHART_STANDARD_UPPER_BOUND_LIMIT = 100;
     
     
     // COLOR CONSTANTS...

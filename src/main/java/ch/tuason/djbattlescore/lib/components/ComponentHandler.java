@@ -24,6 +24,7 @@ import ch.tuason.djbattlescore.lib.components.comps.BattleBarChart;
 import ch.tuason.djbattlescore.lib.MainController;
 import ch.tuason.djbattlescore.lib.components.comps.Header;
 import ch.tuason.djbattlescore.lib.components.comps.ResultGridPane;
+import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,7 +36,6 @@ import javafx.event.EventHandler;
 public class ComponentHandler {
    
     private final MainController mMainController;
-
     private MainLayoutPane mMainLayout;
     
     // private Button sayHiButton;
@@ -160,7 +160,21 @@ public class ComponentHandler {
     */
     
     
-    private MainController getController() {
+    public void updateDjRanking() {
+        getResultLayout().removeCurrentDJRanking();
+        getResultLayout().addCurrentDJRanking();
+    }
+    
+    
+    
+    public void checkIfNeededAndUpdateDjRanking() {
+        if (getResultLayout().isDjRankingUpdateNeeded())
+            updateDjRanking();
+    }
+    
+    
+    
+    public MainController getController() {
         return this.mMainController;
     }
 }

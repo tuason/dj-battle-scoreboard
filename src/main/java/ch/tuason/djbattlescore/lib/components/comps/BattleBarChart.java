@@ -18,6 +18,7 @@
 
 package ch.tuason.djbattlescore.lib.components.comps;
 
+import ch.tuason.djbattlescore.lib.DjBattleConstants;
 import ch.tuason.djbattlescore.lib.MainController;
 import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
 import javafx.collections.FXCollections;
@@ -56,8 +57,6 @@ public class BattleBarChart extends StackedBarChart {
         //getXAxisObject().setLabel("DJ");
         getYAxisObject().setLabel("Votes");
         
-        // this.setTitle("..:: DJ Battle Scoreboard - Kurhaus Lenzerheide ::..");
-        
         this.setLegendVisible(false);
         
         // let us set all dj names with sound styles to the x axis...
@@ -70,14 +69,17 @@ public class BattleBarChart extends StackedBarChart {
         // XYChart.Series dataSerie = new XYChart.Series();
         // getData().addAll(addDataToSerie(dataSerie));
         
-        //dataSerie.getData().add(this) 
+        // update the ranking list...
+        getController().getComponentHandler().updateDjRanking();
     }
     
     
     
     public final void resetChartAndAllData() {
         getController().getDataHandler().getVoteHandler().clearAllVotesBackToZero();
+        resetUpperBoundForYAxis();
         updateChartWithCurrentData();
+        getController().getComponentHandler().updateDjRanking();
     }
     
     
@@ -144,19 +146,28 @@ public class BattleBarChart extends StackedBarChart {
                     System.out.println(seriesData.getXValue() + " : " + seriesData.getYValue());
                     
                     // we update the dj data object for the clicked bar/dj!
-                    getController().getDataHandler().getVoteHandler().increaseVotesForDj(seriesData.getXValue());
-                    
-                    int numberOfVotes = seriesData.getYValue().intValue();
-                    
+                    DjEntity justChangedEntity = getController().getDataHandler().getDjEntityWithName(seriesData.getXValue());                    
+                    getController().getDataHandler().getVoteHandler().increaseVotesForDj(justChangedEntity);
+                   
+                    int numberOfVotes = seriesData.getYValue().intValue();                    
                     // check the scale of the y-axis... maybe we need to increase it...
                     if ((numberOfVotes + 1) >= getYAxisObject().getUpperBound()) {
                         increaseUpperBoundForYAxis();
                     }
                     
                     seriesData.setYValue(numberOfVotes + 1);
+                    
+                    // at the end we might have to update the dj ranking...
+                    getController().getComponentHandler().checkIfNeededAndUpdateDjRanking();
                 }
             });
         }
+    }
+    
+    
+    private void resetUpperBoundForYAxis() {
+        getYAxisObject().setTickUnit(DjBattleConstants.CHART_STANDARD_TICK_UNIT_STEPS);
+        getYAxisObject().setUpperBound(DjBattleConstants.CHART_STANDARD_UPPER_BOUND_LIMIT);
     }
     
     
@@ -172,8 +183,8 @@ public class BattleBarChart extends StackedBarChart {
             yAxis.setAnimated(true);
             yAxis.setAutoRanging(false);
             yAxis.setForceZeroInRange(true);
-            yAxis.setTickUnit(10);
-            yAxis.setUpperBound(100);
+            yAxis.setTickUnit(DjBattleConstants.CHART_STANDARD_TICK_UNIT_STEPS);
+            yAxis.setUpperBound(DjBattleConstants.CHART_STANDARD_UPPER_BOUND_LIMIT);
         }
         return yAxis;
     }

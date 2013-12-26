@@ -56,11 +56,6 @@ public class VoteHandler {
     */
     
     public void clearAllVotesBackToZero() {
-        //if (!getVotes().isEmpty()) {
-        //    for (Map.Entry<DjEntity, Long> entry : getVotes().entrySet()) {
-        //        entry.setValue(1L);
-        //    }
-        //}
         for (DjEntity dj : getDataHandler().getDJList()) {
             if (dj != null) {
                 dj.setVotes(DjBattleConstants.START_NUMBER_FOR_VOTES);
@@ -69,8 +64,7 @@ public class VoteHandler {
     }
     
     
-    public void increaseVotesForDj(String DjIdentifier) {
-        DjEntity dj = getDataHandler().getDjEntityWithName(DjIdentifier);
+    public void increaseVotesForDj(DjEntity dj) {
         if (dj != null) {
             dj.setVotes(dj.getVotes() + 1);
         }
