@@ -18,6 +18,7 @@
 
 package ch.tuason.djbattlescore.lib.data;
 
+import ch.tuason.djbattlescore.lib.DjBattleConstants;
 import ch.tuason.djbattlescore.lib.MainController;
 import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
 import java.util.ArrayList;
@@ -31,8 +32,6 @@ import java.util.List;
 public class DataHandler {
     
     private final MainController mMainController;
-
-    private VoteHandler mVoteHandler;
     
     private List<DjEntity> mDjs;
 
@@ -48,14 +47,6 @@ public class DataHandler {
     }
     
     
-    public VoteHandler getVoteHandler() {
-        if (mVoteHandler == null) {
-            mVoteHandler = new VoteHandler(this);
-        }
-        return mVoteHandler;
-    }
-    
-    
     public List<DjEntity> getDJList() {
         if (mDjs == null) {
             setupDefaultData();
@@ -65,7 +56,7 @@ public class DataHandler {
     
     
     public List<DjEntity> getSortedAfterRankDjList() {
-        ArrayList<DjEntity> result = new ArrayList<DjEntity>(getDJList());
+        ArrayList<DjEntity> result = new ArrayList<>(getDJList());
         Collections.sort(result);
         return result;
     }
@@ -74,14 +65,24 @@ public class DataHandler {
         List<String> result = new ArrayList<>();
         if (getDJList() != null && !getDJList().isEmpty()) {
             for (DjEntity dj : getDJList()) {
-                result.add(dj.getDjNameWithSoundStyle());
+                // result.add(dj.getDjNameWithSoundStyle());
+                result.add(dj.getName()); 
             }
         }
         return result;
     }
     
     
-    public DjEntity getDjEntityWithName(String nameAndSoundStyle) {
+    public DjEntity getDjEntityWithName(String djName) {
+        for (DjEntity dj : getDJList()) {
+            if (dj.getName().equals(djName))
+                return dj;
+        }
+        return null;
+    }
+    
+    
+    public DjEntity getDjEntityWithNameAndStyle(String nameAndSoundStyle) {
         for (DjEntity dj : getDJList()) {
             if (dj.getDjNameWithSoundStyle().equals(nameAndSoundStyle))
                 return dj;
@@ -90,6 +91,21 @@ public class DataHandler {
     }
     
     
+    
+        public void clearAllVotesBackToZero() {
+        for (DjEntity dj : getDJList()) {
+            if (dj != null) {
+                dj.setVotes(DjBattleConstants.START_NUMBER_FOR_VOTES);
+            }
+        }
+    }
+    
+    
+    public void increaseVotesForDj(DjEntity dj) {
+        if (dj != null) {
+            dj.setVotes(dj.getVotes() + 1);
+        }
+    }
     
     
     /**
@@ -103,35 +119,35 @@ public class DataHandler {
         
         DjEntity djOne = new DjEntity();
         djOne.setId(new Long(1));
-        djOne.setName("Dj One");
-        djOne.setSoundStyle("Eighties");
+        djOne.setName("DJ One");
+        djOne.setSoundStyle("Nu-Beatz");
         djOne.setVotes(23);
         mDjs.add(djOne);
         
         DjEntity djTwo = new DjEntity();
         djTwo.setId(new Long(2));
-        djTwo.setName("Dj Two");
+        djTwo.setName("DJ Two");
         djTwo.setSoundStyle("Hip-Hop");
         djTwo.setVotes(34);
         mDjs.add(djTwo);
         
         DjEntity djThree = new DjEntity();
         djThree.setId(new Long(3));
-        djThree.setName("Dj Three");
+        djThree.setName("DJ Three");
         djThree.setSoundStyle("Urban");
         djThree.setVotes(14);
         mDjs.add(djThree);
         
         DjEntity djFour = new DjEntity();
         djFour.setId(new Long(4));
-        djFour.setName("Dj Four");
+        djFour.setName("DJ Four");
         djFour.setSoundStyle("House");
         djFour.setVotes(9);
         mDjs.add(djFour);
             
         DjEntity djFive = new DjEntity();
         djFive.setId(new Long(5));
-        djFive.setName("Dj Five");
+        djFive.setName("DJ Five");
         djFive.setSoundStyle("Electro");
         djFive.setVotes(21);
         mDjs.add(djFive);

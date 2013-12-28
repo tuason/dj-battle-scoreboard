@@ -72,12 +72,15 @@ public class BattleBarChart extends StackedBarChart {
         
         // update the ranking list...
         getController().getComponentHandler().updateDjRanking();
+//        for (TickMark mark : getXAxisObject().getTickMarks()) {
+//            System.out.println("tick mark: -->" + mark.getLabel());
+//        }
     }
     
     
     
     public final void resetChartAndAllData() {
-        getController().getDataHandler().getVoteHandler().clearAllVotesBackToZero();
+        getController().getDataHandler().clearAllVotesBackToZero();
         resetUpperBoundForYAxis();
         updateChartWithCurrentData();
         getController().getComponentHandler().updateDjRanking();
@@ -102,7 +105,7 @@ public class BattleBarChart extends StackedBarChart {
         for (DjEntity dj : getController().getDataHandler().getDJList()) {
             serie.getData().add(
                 new XYChart.Data(
-                    dj.getDjNameWithSoundStyle(), 
+                    dj.getName(), // dj.getDjNameWithSoundStyle()
                     dj.getVotes()
                 )
             );
@@ -147,8 +150,8 @@ public class BattleBarChart extends StackedBarChart {
                     System.out.println(seriesData.getXValue() + " : " + seriesData.getYValue());
                     
                     // we update the dj data object for the clicked bar/dj!
-                    DjEntity justChangedEntity = getController().getDataHandler().getDjEntityWithName(seriesData.getXValue());                    
-                    getController().getDataHandler().getVoteHandler().increaseVotesForDj(justChangedEntity);
+                    DjEntity justChangedEntity = getController().getDataHandler().getDjEntityWithName(seriesData.getXValue());  //getDjEntityWithNameAndStyle                  
+                    getController().getDataHandler().increaseVotesForDj(justChangedEntity);
                    
                     int numberOfVotes = seriesData.getYValue().intValue();                    
                     // check the scale of the y-axis... maybe we need to increase it...
@@ -195,7 +198,29 @@ public class BattleBarChart extends StackedBarChart {
         if (xAxis == null) {
             xAxis = new CategoryAxis();
             
-            xAxis.setTickLabelFont(new Font("Arial", 13));
+            xAxis.setTickLabelFont(new Font("Arial", 20));
+            
+            // xAxis.setTickLabelGap(1);
+            
+            //xAxis.setStyle("-fx-font-size: 2.0em; -fx-font-family: Arial; -fx-wrap-text: true; -fx-tick-label-fill: #000000;");
+                    
+//            xAxis.getTickMarks().addListener(new ListChangeListener() {
+//
+//                @Override
+//                public void onChanged(ListChangeListener.Change change) {
+//                    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                    if (change.wasAdded()) {
+//                        //System.out.println("changed a tick on the x-axis: " + change.getList().get(change.getList().size()-1));
+//                        System.out.println("tick label added to the x-axis.");
+//                    }
+//                }
+//
+//            });
+            
+//            for (Node label : xAxis.lookupAll(".axis-label")) {  
+//                label.setStyle("-fx-wrap-text: true;"); 
+//                System.out.println(label.getId());
+//            }  
         }
         return xAxis;
     }
