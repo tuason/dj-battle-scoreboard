@@ -202,6 +202,7 @@ public class BattleBarChart extends StackedBarChart {
             
             // xAxis.setTickLabelGap(1);
             
+            // check also http://docs.oracle.com/javafx/2/charts/css-styles.htm
             //xAxis.setStyle("-fx-font-size: 2.0em; -fx-font-family: Arial; -fx-wrap-text: true; -fx-tick-label-fill: #000000;");
                     
 //            xAxis.getTickMarks().addListener(new ListChangeListener() {
