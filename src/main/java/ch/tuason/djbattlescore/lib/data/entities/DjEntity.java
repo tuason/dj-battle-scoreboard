@@ -21,7 +21,8 @@ package ch.tuason.djbattlescore.lib.data.entities;
 import java.beans.Transient;
 
 /**
- *
+ * a bean entity / POJO for a DJ...
+ * 
  * @author maesi
  */
 public class DjEntity implements Comparable {
@@ -30,6 +31,8 @@ public class DjEntity implements Comparable {
     private String name;
     private String soundStyle;
     private int votes;
+    private String avatarPicPath32;
+    private String avatarPicPathMain;
     //private int rank;
 
     public Long getId() {
@@ -64,6 +67,26 @@ public class DjEntity implements Comparable {
         this.votes = votes;
     }
 
+    public String getAvatarPicPath32() {
+        return avatarPicPath32;
+    }
+
+    public void setAvatarPicPath32(String path) {
+        this.avatarPicPath32 = path;
+    }
+
+    public String getAvatarPicPathMain() {
+        return avatarPicPathMain;
+    }
+
+    public void setAvatarPicPathMain(String path) {
+        this.avatarPicPathMain = path;
+    }
+
+    
+    
+    
+    
     /*
     public int getRank() {
         return rank;

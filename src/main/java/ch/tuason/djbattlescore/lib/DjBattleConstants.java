@@ -45,4 +45,19 @@ public interface DjBattleConstants {
     public static final String IMAGE_RESOURCE_TURNTABLE_LOGO_32 = "/images/turntables32.jpg";
     public static final String IMAGE_RESOURCE_TURNTABLE_LOGO_48 = "/images/turntables48.jpg";
     
+    
+    // IMAGE CONSTANTS FOR DJ'S...
+    public static final String IMAGE_RESOURCE_BASE_FOR_DJ_PICS = "/images/dj/";
+    
+//    public static final String IMAGE_RESOURCE_DJ_AVATAR_1_32 = "/images/dj/dj_avatar_1_32.jpg";
+//    public static final String IMAGE_RESOURCE_DJ_AVATAR_2_32 = "/images/dj/dj_avatar_2_32.jpg";
+//    public static final String IMAGE_RESOURCE_DJ_AVATAR_3_32 = "/images/dj/dj_avatar_3_32.jpg";
+//    public static final String IMAGE_RESOURCE_DJ_AVATAR_4_32 = "/images/dj/dj_avatar_4_32.jpg";
+//    public static final String IMAGE_RESOURCE_DJ_AVATAR_5_32 = "/images/dj/dj_avatar_5_32.jpg";
+//    
+//    public static final String IMAGE_RESOURCE_DJ_AVATAR_1 = "/images/dj/dj_avatar_1.jpg";
+//    public static final String IMAGE_RESOURCE_DJ_AVATAR_2 = "/images/dj/dj_avatar_2.jpg";
+//    public static final String IMAGE_RESOURCE_DJ_AVATAR_3 = "/images/dj/dj_avatar_3.jpg";
+//    public static final String IMAGE_RESOURCE_DJ_AVATAR_4 = "/images/dj/dj_avatar_4.jpg";
+//    public static final String IMAGE_RESOURCE_DJ_AVATAR_5 = "/images/dj/dj_avatar_5.jpg";
 }

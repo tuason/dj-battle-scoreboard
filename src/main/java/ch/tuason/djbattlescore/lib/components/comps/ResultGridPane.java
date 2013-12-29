@@ -32,6 +32,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -69,8 +70,19 @@ public class ResultGridPane extends GridPane {
         if (this.currentDjRanking != null && !this.currentDjRanking.isEmpty()) {
             int iPos = 1;
             for (DjEntity dj : this.currentDjRanking) {
-                Image djImage = new Image(getClass().getResourceAsStream(
-                    DjBattleConstants.IMAGE_RESOURCE_TURNTABLE_LOGO_32));
+                 
+                Image djImage = null;
+                
+                if (!StringUtils.isEmpty(dj.getAvatarPicPath32())) {
+                    djImage = new Image(getClass().getResourceAsStream(
+                        DjBattleConstants.IMAGE_RESOURCE_BASE_FOR_DJ_PICS + 
+                                dj.getAvatarPicPath32()));
+                }       
+                
+                if (StringUtils.isEmpty(dj.getAvatarPicPath32()) || djImage == null) {
+                    djImage = new Image(getClass().getResourceAsStream(
+                        DjBattleConstants.IMAGE_RESOURCE_TURNTABLE_LOGO_32));
+                }
                 
                 HBox djComponent = new HBox();
                 djComponent.setPadding(new Insets(5, 0, 0, 20));

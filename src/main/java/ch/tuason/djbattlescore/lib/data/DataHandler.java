@@ -35,9 +35,6 @@ public class DataHandler {
     
     private List<DjEntity> mDjs;
 
-    
-    
-    
     /**
      * constructor
      * @param controller 
@@ -122,6 +119,7 @@ public class DataHandler {
         djOne.setName("DJ One");
         djOne.setSoundStyle("Nu-Beatz");
         djOne.setVotes(23);
+        djOne.setAvatarPicPath32("dj_avatar_1_32.jpg");
         mDjs.add(djOne);
         
         DjEntity djTwo = new DjEntity();
@@ -129,6 +127,7 @@ public class DataHandler {
         djTwo.setName("DJ Two");
         djTwo.setSoundStyle("Hip-Hop");
         djTwo.setVotes(34);
+        djTwo.setAvatarPicPath32("dj_avatar_2_32.jpg");
         mDjs.add(djTwo);
         
         DjEntity djThree = new DjEntity();
@@ -136,6 +135,7 @@ public class DataHandler {
         djThree.setName("DJ Three");
         djThree.setSoundStyle("Urban");
         djThree.setVotes(14);
+        //djThree.setAvatarPicPath32("dj_avatar_3_32.jpg");
         mDjs.add(djThree);
         
         DjEntity djFour = new DjEntity();
@@ -143,6 +143,7 @@ public class DataHandler {
         djFour.setName("DJ Four");
         djFour.setSoundStyle("House");
         djFour.setVotes(9);
+        //djFour.setAvatarPicPath32("dj_avatar_4_32.jpg");
         mDjs.add(djFour);
             
         DjEntity djFive = new DjEntity();
@@ -150,6 +151,7 @@ public class DataHandler {
         djFive.setName("DJ Five");
         djFive.setSoundStyle("Electro");
         djFive.setVotes(21);
+        djFive.setAvatarPicPath32("dj_avatar_5_32.jpg");
         mDjs.add(djFive);
     }
 }
