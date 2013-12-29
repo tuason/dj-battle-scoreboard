@@ -18,13 +18,13 @@
 
 package ch.tuason.djbattlescore.lib.components;
 
-import ch.tuason.djbattlescore.lib.components.comps.Footer;
-import ch.tuason.djbattlescore.lib.components.comps.MainLayoutPane;
-import ch.tuason.djbattlescore.lib.components.comps.BattleBarChart;
 import ch.tuason.djbattlescore.lib.MainController;
+import ch.tuason.djbattlescore.lib.components.comps.BattleBarChart;
+import ch.tuason.djbattlescore.lib.components.comps.Footer;
 import ch.tuason.djbattlescore.lib.components.comps.Header;
+import ch.tuason.djbattlescore.lib.components.comps.MainLayoutPane;
+import ch.tuason.djbattlescore.lib.components.comps.NowPlayingImageRotator;
 import ch.tuason.djbattlescore.lib.components.comps.ResultGridPane;
-import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -42,6 +42,7 @@ public class ComponentHandler {
     private Header header;
     private BattleBarChart scoreBoardChart;
     private ResultGridPane resultLayout;
+    private NowPlayingImageRotator imageRotator;
     private Footer footer;
     
     /**
@@ -91,6 +92,20 @@ public class ComponentHandler {
         }
         return resultLayout;
     }
+    
+    
+    /**
+     * returns an image rotator with the currently playing dj...
+     * 
+     * @return 
+     */
+    public NowPlayingImageRotator getImageRotator() {
+        if (imageRotator == null) {
+            imageRotator = new NowPlayingImageRotator(this);
+        }
+        return imageRotator;
+    }
+    
     
     /*
     public BarChart getScoreBoardChartOriginalStyle() {
