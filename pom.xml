@@ -6,13 +6,13 @@
     <artifactId>djbattlescore</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
-
     <name>djbattlescore</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mainClass>ch.tuason.djbattlescore.MainApp</mainClass>
         <javafx.min.version>2.2</javafx.min.version>
+        <final.build.name>DJ-Battle-Score</final.build.name>
     </properties>
 
     <organization>
@@ -20,6 +20,8 @@
     </organization>
 
     <build>
+        <finalName>${final.build.name}</finalName>
+        
         <plugins>
             
             <plugin>
