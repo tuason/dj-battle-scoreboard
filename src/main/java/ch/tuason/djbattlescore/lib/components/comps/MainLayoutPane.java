@@ -41,7 +41,8 @@ public class MainLayoutPane extends BorderPane {
     private void initializeMainLayoutPane() {
         setTop(getComponentHandler().getHeader());
         setCenter(getComponentHandler().getScoreBoardChart());
-        setRight(getComponentHandler().getResultLayout());
+        //setRight(getComponentHandler().getResultLayout());
+        setRight(getComponentHandler().getResultAndPlayNowLayout());
         setBottom(getComponentHandler().getFooter());
     }
     

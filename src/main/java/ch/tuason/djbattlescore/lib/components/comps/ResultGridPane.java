@@ -56,7 +56,7 @@ public class ResultGridPane extends GridPane {
         
         this.mParent = componentHandler;
         
-        this.setPadding(new Insets(40, 20, 10, 20)); // top, right, bottom, left...
+        this.setPadding(new Insets(20, 20, 10, 20)); // top, right, bottom, left...
         this.setHgap(5);
         this.setVgap(5);
      

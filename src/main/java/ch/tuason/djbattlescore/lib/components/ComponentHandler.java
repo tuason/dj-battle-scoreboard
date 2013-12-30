@@ -25,6 +25,7 @@ import ch.tuason.djbattlescore.lib.components.comps.Header;
 import ch.tuason.djbattlescore.lib.components.comps.MainLayoutPane;
 import ch.tuason.djbattlescore.lib.components.comps.NowPlayingImageRotator;
 import ch.tuason.djbattlescore.lib.components.comps.ResultGridPane;
+import ch.tuason.djbattlescore.lib.components.comps.ResultNowPlayingBoxRight;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -38,11 +39,12 @@ public class ComponentHandler {
     private final MainController mMainController;
     private MainLayoutPane mMainLayout;
     
+    private ResultGridPane resultLayout;
+    private NowPlayingImageRotator imageRotator;
     // private Button sayHiButton;
     private Header header;
     private BattleBarChart scoreBoardChart;
-    private ResultGridPane resultLayout;
-    private NowPlayingImageRotator imageRotator;
+    private ResultNowPlayingBoxRight resultAndNowPlayingBox;
     private Footer footer;
     
     /**
@@ -78,6 +80,19 @@ public class ComponentHandler {
             scoreBoardChart = new BattleBarChart(getController());
         }
         return scoreBoardChart;
+    }
+    
+    
+    /**
+     * returns the whole right side (result and play now panels)...
+     * 
+     * @return 
+     */
+    public ResultNowPlayingBoxRight getResultAndPlayNowLayout() {
+        if (resultAndNowPlayingBox == null) {
+            resultAndNowPlayingBox = new ResultNowPlayingBoxRight(this);
+        }
+        return resultAndNowPlayingBox;
     }
     
     

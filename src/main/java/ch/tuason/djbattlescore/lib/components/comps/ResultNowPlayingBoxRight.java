@@ -18,6 +18,7 @@
 
 package ch.tuason.djbattlescore.lib.components.comps;
 
+import ch.tuason.djbattlescore.lib.components.ComponentHandler;
 import javafx.scene.layout.VBox;
 
 /**
@@ -25,5 +26,30 @@ import javafx.scene.layout.VBox;
  * @author maesi
  */
 public class ResultNowPlayingBoxRight extends VBox {
+ 
+    private final ComponentHandler mParent;
+
     
+    /**
+     * constructor
+     * 
+     * @param componentHandler 
+     */
+    public ResultNowPlayingBoxRight(ComponentHandler componentHandler) {
+        super();
+        this.mParent = componentHandler;
+        
+        initializeComponents();
+    }
+    
+    
+    private void initializeComponents() {
+        getChildren().add(getComponentHandler().getResultLayout());
+        getChildren().add(getComponentHandler().getImageRotator());
+    }
+    
+    
+    private ComponentHandler getComponentHandler() {
+        return this.mParent;
+    }
 }

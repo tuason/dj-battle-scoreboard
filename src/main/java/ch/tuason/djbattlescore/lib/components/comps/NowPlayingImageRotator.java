@@ -18,31 +18,111 @@
 
 package ch.tuason.djbattlescore.lib.components.comps;
 
+import ch.tuason.djbattlescore.lib.DjBattleConstants;
 import ch.tuason.djbattlescore.lib.components.ComponentHandler;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 /**
- *
+ * 
+ * Now Playing image rotator...
+ * http://docs.oracle.com/javafx/2/api/javafx/scene/image/ImageView.html
+ * 
  * @author maesi
  */
 public class NowPlayingImageRotator extends GridPane {
     
     
     private final ComponentHandler mParent;
+    
+    private Label titleLabel;
+    private Image standardImage;
+    private Image currentImage;
+    
+    private HBox imageViewPanel;
+    private ImageView imageView;
+    
 
     public NowPlayingImageRotator(ComponentHandler componentHandler) {
         super();
         
         this.mParent = componentHandler;
         
-        this.setPadding(new Insets(40, 20, 10, 20)); // top, right, bottom, left...
+        this.setPadding(new Insets(20, 20, 10, 20)); // top, right, bottom, left...
         this.setHgap(5);
         this.setVgap(5);
+        
+        add(getNowPlayingTitleLabel(), 0, 0);
+        add(getImageViewPanel(getImageView()), 0, 1);
+        
+        updateCurrentlyPlayingImage();
     }
     
     
+    public void updateCurrentlyPlayingImage() {
+        removeCurrentPlayImage();
+        
+        addRightImageToView();
+    }
     
     
+    private void addRightImageToView() {
+        getImageView().setImage(getStandardImage());
+    }
     
+    
+    private void removeCurrentPlayImage() {
+        if (this.currentImage != null)
+            getChildren().remove(this.currentImage);
+    }
+    
+    
+    private Image getStandardImage() {
+        if (standardImage == null) {
+            standardImage = new Image(DjBattleConstants.IMAGE_RESOURCE_PLAYING_NOW_STANDARD);
+        }
+        return standardImage;
+    }
+
+    
+    private ImageView getImageView() {
+        if (imageView == null) {
+            imageView = new ImageView();
+            imageView.setFitWidth(DjBattleConstants.DJ_AVATAR_SIZE_BIG_WIDTH);
+            imageView.setPreserveRatio(true);
+            imageView.setSmooth(true);
+            imageView.setCache(true);
+        }
+        return imageView;
+    }
+    
+    
+    private HBox getImageViewPanel(ImageView view) {
+        if (imageViewPanel == null) {
+            imageViewPanel = new HBox();
+            imageViewPanel.setPadding(new Insets(5, 0, 0, 30));
+            imageViewPanel.getChildren().add(view);
+        }
+        return imageViewPanel;
+    }
+    
+    
+    private Label getNowPlayingTitleLabel() {
+        
+        if (titleLabel == null) {
+            Image image = new Image(getClass().getResourceAsStream(
+                    DjBattleConstants.IMAGE_RESOURCE_TURNTABLE_LOGO_48));
+            titleLabel = new Label("Spinning the Decks", new ImageView(image));
+            titleLabel.setFont(new Font("Arial", 30));
+            titleLabel.setTextFill(Color.web(
+                    DjBattleConstants.COLOR_RESULT_TITLE_TEXT));
+        }    
+        return titleLabel;
+    }
 }

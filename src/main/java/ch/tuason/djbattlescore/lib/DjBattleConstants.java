@@ -27,6 +27,9 @@ public interface DjBattleConstants {
     // APPLICATION VARIABLES...
     public static final String APPLICATION_TITLE = "...::: DJ Battle Scoreboard - Kurhaus Lenzerheide :::...";
     
+    public static final Integer APP_MIN_SCENE_WIDTH = 1024;
+    public static final Integer APP_MIN_SCENE_HEIGHT = 800;
+    
     // private final String cCSS_FILE_RESOURCE = "/styles/Styles.css";
     // private final String cFXML_FILE_RESOURCE = "/fxml/Scene.fxml";
 
@@ -34,6 +37,9 @@ public interface DjBattleConstants {
     
     public static final Integer CHART_STANDARD_TICK_UNIT_STEPS = 10;
     public static final Integer CHART_STANDARD_UPPER_BOUND_LIMIT = 100;
+    
+    public static final Integer DJ_AVATAR_SIZE_BIG_WIDTH = 250;
+    public static final Integer DJ_AVATAR_SIZE_SMALL_WIDTH = 32;
     
     
     // COLOR CONSTANTS...
@@ -48,6 +54,9 @@ public interface DjBattleConstants {
     
     // IMAGE CONSTANTS FOR DJ'S...
     public static final String IMAGE_RESOURCE_BASE_FOR_DJ_PICS = "/images/dj/";
+    
+    // IMAGE CONSTANTS FOR STANDARD DJ'S...
+    public static final String IMAGE_RESOURCE_PLAYING_NOW_STANDARD = "/images/dj/standard_image.jpg";
     
 //    public static final String IMAGE_RESOURCE_DJ_AVATAR_1_32 = "/images/dj/dj_avatar_1_32.jpg";
 //    public static final String IMAGE_RESOURCE_DJ_AVATAR_2_32 = "/images/dj/dj_avatar_2_32.jpg";

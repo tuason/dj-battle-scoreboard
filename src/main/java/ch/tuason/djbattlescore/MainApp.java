@@ -26,7 +26,8 @@ public class MainApp extends Application {
         // root.getChildren().add(btn);
         root.getChildren().add(getController().getComponentHandler().getMainLayout());
         
-        Scene scene = new Scene(root, 1024, 800);
+        Scene scene = new Scene(root, DjBattleConstants.APP_MIN_SCENE_WIDTH, 
+                DjBattleConstants.APP_MIN_SCENE_HEIGHT);
         
         stage.setTitle(DjBattleConstants.APPLICATION_TITLE);
         stage.setScene(scene);
