@@ -20,7 +20,10 @@ package ch.tuason.djbattlescore.lib.components.comps;
 
 import ch.tuason.djbattlescore.lib.DjBattleConstants;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.effect.Effect;
+import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -51,12 +54,17 @@ public class Header extends HBox {
         setStyle(DjBattleConstants.FOOTER_AND_HEADER_BACKGROUND_STYLE);
         
         Image imageKurhaus = new Image("/images/kurhaus_logo.png");
-        Label title = new Label("  ...::: DJ Battle Scoreboard :::...", new ImageView(imageKurhaus));
+        ImageView imageViewKurhaus = new ImageView(imageKurhaus);
+        Label title = new Label("  ...::: DJ Battle Scoreboard :::...");
         
         title.setFont(new Font("Arial", 40));
         title.setTextFill(Color.web("#FFFFFF"));
+        final Effect glow = new Glow(1.0);
+        title.setEffect(glow);
         
-        getChildren().addAll(title);
+        setAlignment(Pos.BOTTOM_LEFT);
+        
+        getChildren().addAll(imageViewKurhaus, title);
     }
     
     

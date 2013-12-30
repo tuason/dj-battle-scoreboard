@@ -95,7 +95,7 @@ public class DataHandler {
     
     
     
-        public void clearAllVotesBackToZero() {
+    public void clearAllVotesBackToZero() {
         for (DjEntity dj : getDJList()) {
             if (dj != null) {
                 dj.setVotes(DjBattleConstants.START_NUMBER_FOR_VOTES);

@@ -20,6 +20,7 @@ package ch.tuason.djbattlescore.lib.components.comps;
 
 import ch.tuason.djbattlescore.lib.components.ComponentHandler;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
 /**
  *
@@ -28,6 +29,7 @@ import javafx.scene.layout.BorderPane;
 public class ResultNowPlayingBoxRight extends BorderPane {
  
     private final ComponentHandler mParent;
+    private VBox mainContent;
 
     
     /**
@@ -44,8 +46,20 @@ public class ResultNowPlayingBoxRight extends BorderPane {
     
     
     private void initializeComponents() {        
-        setCenter(getComponentHandler().getResultLayout());
-        setBottom(getComponentHandler().getImageRotator());
+        //setCenter(getComponentHandler().getResultLayout());
+        //setBottom(getComponentHandler().getImageRotator());
+        setCenter(getMainContent());
+    }
+    
+    private VBox getMainContent() {
+        if (mainContent == null) {
+            mainContent = new VBox(20);
+            mainContent.getChildren().addAll(
+                    getComponentHandler().getImageRotator(), 
+                    getComponentHandler().getResultLayout()
+            );
+        }
+        return mainContent;
     }
     
     

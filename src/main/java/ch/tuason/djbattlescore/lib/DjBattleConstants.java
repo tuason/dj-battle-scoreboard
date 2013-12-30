@@ -28,7 +28,7 @@ public interface DjBattleConstants {
     public static final String APPLICATION_TITLE = "...::: DJ Battle Scoreboard - Kurhaus Lenzerheide :::...";
     
     public static final Integer APP_MIN_SCENE_WIDTH = 1024;
-    public static final Integer APP_MIN_SCENE_HEIGHT = 800;
+    public static final Integer APP_MIN_SCENE_HEIGHT = 850;
     
     // private final String cCSS_FILE_RESOURCE = "/styles/Styles.css";
     // private final String cFXML_FILE_RESOURCE = "/fxml/Scene.fxml";

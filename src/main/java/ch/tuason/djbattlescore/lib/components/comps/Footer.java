@@ -24,16 +24,24 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
 
 /**
  *
  * @author maesi
  */
-public class Footer extends HBox {
+public class Footer extends BorderPane {
 
     private Button resetButton;
     private Button exitButton;
+    
+    private HBox copyright;
+    private Label lblCopyright;
+    private Label tuasonLink;
+    // private Hyperlink tuasonLink;
     
     private final EventHandler<ActionEvent> resetButtonEventHandler;
     private final EventHandler<ActionEvent> exitButtonEventHandler;
@@ -55,10 +63,15 @@ public class Footer extends HBox {
     
     private void initializeFooter() {
         setPadding(new Insets(15, 12, 15, 12));
-        setSpacing(10);
+        //setSpacing(10);
         setStyle(DjBattleConstants.FOOTER_AND_HEADER_BACKGROUND_STYLE);
-        setAlignment(Pos.CENTER_RIGHT);
-        getChildren().addAll(getResetButton(), getExitButton());
+        setLeft(getCopyRight());
+        //setAlignment(Pos.CENTER_RIGHT);
+        HBox buttonBox = new HBox();
+        buttonBox.setSpacing(10);
+        buttonBox.setAlignment(Pos.BOTTOM_LEFT);
+        buttonBox.getChildren().addAll(getResetButton(), getExitButton());
+        setRight(buttonBox);
     }
     
     
@@ -82,4 +95,38 @@ public class Footer extends HBox {
         return exitButton;
     }
     
+    
+    private HBox getCopyRight() {
+        if (copyright == null) {
+            copyright = new HBox();
+            copyright.getChildren().addAll(getCopyRightLabel(), getTuasonLink());
+            copyright.setAlignment(Pos.BOTTOM_LEFT);
+        }
+        return copyright;
+    }
+    
+    private Label getCopyRightLabel() {
+        if (lblCopyright == null) {
+            lblCopyright = new Label();
+            lblCopyright.setFont(new Font("Arial", 12));
+            lblCopyright.setText("(c)opyright 2014 by tuason software inc. - ");
+        }
+        return lblCopyright;
+    }
+    
+    private Label getTuasonLink() {
+        if (tuasonLink == null) {
+            tuasonLink = new Label();
+            tuasonLink.setFont(new Font("Arial", 10));
+            tuasonLink.setText("http://www.tuason.com.au");
+        }
+        return tuasonLink;
+    }
+    
+//    private Hyperlink getTuasonLink() {
+//        if (tuasonLink == null) {
+//            tuasonLink = new Hyperlink("http://www.tuason.com.au", new Label("www.tuason.com.au"));
+//        }
+//        return tuasonLink;
+//    }
 }

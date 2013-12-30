@@ -24,6 +24,8 @@ import ch.tuason.djbattlescore.lib.components.ComponentHandler;
 import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -41,10 +43,13 @@ import org.apache.commons.lang3.StringUtils;
 public class ResultGridPane extends GridPane {
     
     private final ComponentHandler mParent;
-    private Label resultLabel;
+    private Label resultTitleLabel;
     
     private Collection<DjEntity> currentDjRanking;
     private final ArrayList<HBox> addedRankingComponents = new ArrayList<>();
+    
+    private Image standardImage;
+    private final Map<Long, Image> imageCache;
 
     /**
      * constructor
@@ -55,18 +60,19 @@ public class ResultGridPane extends GridPane {
         super();
         
         this.mParent = componentHandler;
+        this.imageCache = new HashMap<>();
         
         this.setPadding(new Insets(20, 20, 20, 20)); // top, right, bottom, left...
         this.setHgap(5);
         this.setVgap(5);
      
-        add(getResultLabel(), 0, 0);
+        add(getResultTitleLabel(), 0, 0);
     }
     
     
-    public void addCurrentDJRanking() {
+    public void addCurrentDJRanking(Collection<DjEntity> results) {
         this.addedRankingComponents.clear();
-        this.currentDjRanking = getController().getDataHandler().getSortedAfterRankDjList();
+        this.currentDjRanking = results;
         if (this.currentDjRanking != null && !this.currentDjRanking.isEmpty()) {
             int iPos = 1;
             for (DjEntity dj : this.currentDjRanking) {
@@ -74,14 +80,30 @@ public class ResultGridPane extends GridPane {
                 Image djImage = null;
                 
                 if (!StringUtils.isEmpty(dj.getAvatarPicPath32())) {
-                    djImage = new Image(getClass().getResourceAsStream(
-                        DjBattleConstants.IMAGE_RESOURCE_BASE_FOR_DJ_PICS + 
+                    djImage = getImageFromCache(dj);
+                    
+                    if (djImage == null) {
+                        try {
+                            djImage = new Image(getClass().getResourceAsStream(
+                                DjBattleConstants.IMAGE_RESOURCE_BASE_FOR_DJ_PICS + 
                                 dj.getAvatarPicPath32()));
+                            imageCache.put(dj.getId(), djImage);
+                        } catch (Exception e) {
+                            System.out.println("the image for dj '" + 
+                                dj.getName() + 
+                                "' could not be loaded for the avatar image... " + 
+                                e.getMessage());
+                            djImage = null;
+                        }
+                    }
+                    
+                    if (djImage == null) {
+                        djImage = getStandardImage();
+                    }
                 }       
                 
                 if (StringUtils.isEmpty(dj.getAvatarPicPath32()) || djImage == null) {
-                    djImage = new Image(getClass().getResourceAsStream(
-                        DjBattleConstants.IMAGE_RESOURCE_TURNTABLE_LOGO_32));
+                    djImage = getStandardImage();
                 }
                 
                 HBox djComponent = new HBox();
@@ -122,17 +144,33 @@ public class ResultGridPane extends GridPane {
     }
     
     
-    private Label getResultLabel() {
-        
-        if (resultLabel == null) {
+    private Label getResultTitleLabel() {
+        if (resultTitleLabel == null) {
             Image image = new Image(getClass().getResourceAsStream(
                     DjBattleConstants.IMAGE_RESOURCE_TURNTABLE_LOGO_48));
-            resultLabel = new Label("Current Ranking", new ImageView(image));
-            resultLabel.setFont(new Font("Arial", 30));
-            resultLabel.setTextFill(Color.web(
+            resultTitleLabel = new Label("Current Ranking", new ImageView(image));
+            resultTitleLabel.setFont(new Font("Arial", 30));
+            resultTitleLabel.setTextFill(Color.web(
                     DjBattleConstants.COLOR_RESULT_TITLE_TEXT));
         }    
-        return resultLabel;
+        return resultTitleLabel;
+    }
+    
+    
+    private Image getStandardImage() {
+        if (standardImage == null) {
+            standardImage = new Image(getClass().getResourceAsStream(
+                DjBattleConstants.IMAGE_RESOURCE_TURNTABLE_LOGO_32));
+        }
+        return standardImage;
+        
+    }
+    
+    private Image getImageFromCache(DjEntity dj) {
+        if (imageCache.containsKey(dj.getId())) {
+            return imageCache.get(dj.getId());
+        }
+        return null;
     }
     
     

@@ -26,6 +26,9 @@ import ch.tuason.djbattlescore.lib.components.comps.MainLayoutPane;
 import ch.tuason.djbattlescore.lib.components.comps.NowPlayingImageRotator;
 import ch.tuason.djbattlescore.lib.components.comps.ResultGridPane;
 import ch.tuason.djbattlescore.lib.components.comps.ResultNowPlayingBoxRight;
+import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
+import java.util.Collection;
+import java.util.List;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -191,8 +194,12 @@ public class ComponentHandler {
     
     
     public void updateDjRanking() {
+        List<DjEntity> results = getController().getDataHandler().getSortedAfterRankDjList();
         getResultLayout().removeCurrentDJRanking();
-        getResultLayout().addCurrentDJRanking();
+        if (!results.isEmpty()) {
+            getResultLayout().addCurrentDJRanking(results);
+            getImageRotator().updateCurrentlyPlayingImage(results.get(0));
+        }
     }
     
     

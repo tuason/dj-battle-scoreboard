@@ -20,6 +20,9 @@ package ch.tuason.djbattlescore.lib.components.comps;
 
 import ch.tuason.djbattlescore.lib.DjBattleConstants;
 import ch.tuason.djbattlescore.lib.components.ComponentHandler;
+import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
+import java.util.HashMap;
+import java.util.Map;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -28,15 +31,15 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * 
- * Now Playing image rotator...
- * http://docs.oracle.com/javafx/2/api/javafx/scene/image/ImageView.html
+ * Now Playing Image Rotator...
  * 
  * @author maesi
  */
-public class NowPlayingImageRotator extends GridPane {
+public final class NowPlayingImageRotator extends GridPane {
     
     
     private final ComponentHandler mParent;
@@ -48,11 +51,13 @@ public class NowPlayingImageRotator extends GridPane {
     private HBox imageViewPanel;
     private ImageView imageView;
     
+    private final Map<Long, Image> imageCache;
+    
 
     public NowPlayingImageRotator(ComponentHandler componentHandler) {
         super();
-        
         this.mParent = componentHandler;
+        this.imageCache = new HashMap<>();
         
         this.setPadding(new Insets(20, 20, 20, 20)); // top, right, bottom, left...
         this.setHgap(5);
@@ -61,19 +66,39 @@ public class NowPlayingImageRotator extends GridPane {
         add(getNowPlayingTitleLabel(), 0, 0);
         add(getImageViewPanel(getImageView()), 0, 1);
         
-        updateCurrentlyPlayingImage();
+        // updateCurrentlyPlayingImage(null);
     }
     
     
-    public void updateCurrentlyPlayingImage() {
+    public void updateCurrentlyPlayingImage(DjEntity leadingDj) {
         removeCurrentPlayImage();
-        
-        addRightImageToView();
+        addRightImageToView(leadingDj);
     }
     
     
-    private void addRightImageToView() {
-        getImageView().setImage(getStandardImage());
+    private void addRightImageToView(DjEntity leadingDj) {
+        if (leadingDj != null && !StringUtils.isEmpty(leadingDj.getAvatarPicPathMain())) {
+            Image image = getImageFromCache(leadingDj);
+            if (image == null) {
+                try {
+                    image = new Image(DjBattleConstants.IMAGE_RESOURCE_BASE_FOR_DJ_PICS + 
+                        leadingDj.getAvatarPicPathMain());
+                    imageCache.put(leadingDj.getId(), image);
+                } catch(Exception e) {
+                    System.out.println("the image for dj '" + 
+                            leadingDj.getName() + 
+                            "' could not be loaded for the image rotator... " + 
+                            e.getMessage());
+                    image = null;
+                }
+            }
+            if (image == null) {
+                image = getStandardImage();
+            }
+            getImageView().setImage(image);
+        } else {
+            getImageView().setImage(getStandardImage());
+        }
     }
     
     
@@ -82,6 +107,13 @@ public class NowPlayingImageRotator extends GridPane {
             getChildren().remove(this.currentImage);
     }
     
+    
+    private Image getImageFromCache(DjEntity dj) {
+        if (imageCache.containsKey(dj.getId())) {
+            return imageCache.get(dj.getId());
+        }
+        return null;
+    }
     
     private Image getStandardImage() {
         if (standardImage == null) {

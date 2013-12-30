@@ -1,6 +1,6 @@
 id,name,soundStyle,votes,avatarPicPath32,avatarPicPathMain
 1,DJ One,Breakbeats,11,dj_avatar_1_32.jpg,
-2,DJ Two,Hip-Hop,17,dj_avatar_2_32.jpg,
+2,DJ Two,Hip-Hop,17,dj_avatar_2_32.jpg,dj_avatar_2_image.jpg
 3,DJ Three,Electro,18,,
-4,DJ Four,House,10,,
-5,DJ Five,Funk,21,dj_avatar_5_32.jpg,
+4,DJ Four,House,10,dj_avatar_4_32.jpg,dj_avatar_4_image.jpg
+5,DJ Five,Funk,21,dj_avatar_5_32.jpg,dj_avatar_5_image.jpg
