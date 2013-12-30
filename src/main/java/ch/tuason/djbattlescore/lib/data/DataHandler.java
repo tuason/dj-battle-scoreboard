@@ -21,9 +21,13 @@ package ch.tuason.djbattlescore.lib.data;
 import ch.tuason.djbattlescore.lib.DjBattleConstants;
 import ch.tuason.djbattlescore.lib.MainController;
 import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -46,7 +50,9 @@ public class DataHandler {
     
     public List<DjEntity> getDJList() {
         if (mDjs == null) {
-            setupDefaultData();
+            if (! importDataFromDjsCSVFile()) {
+                setupAppWithDefaultData();
+            }
         }
         return mDjs;
     }
@@ -106,11 +112,52 @@ public class DataHandler {
     
     
     /**
+     * this method imports the data from a certain djs.csv file which is placed in the resource directory "data"...
+     * 
+     * @return true or false, whether the method was successfully or not...
+     */
+    private boolean importDataFromDjsCSVFile() {
+        try {
+            if (mDjs == null)
+                mDjs = new ArrayList<>();
+            
+            BufferedReader br = new BufferedReader(new InputStreamReader(
+                  this.getClass().getResourceAsStream(
+                          DjBattleConstants.FILE_RESOURCE_DJS_CSV)));
+            
+            String line = "";
+            
+            while ((line = br.readLine()) != null) {
+                String[] dj = line.split(DjBattleConstants.FILE_CVS_SPLIT_BY, line.length()-1);
+                if (dj.length > 0) {
+                    if (!dj[0].equalsIgnoreCase("id")) {
+                        DjEntity djEntity = new DjEntity();
+                        djEntity.setId(Long.valueOf(dj[0]));
+                        djEntity.setName(StringUtils.isEmpty(dj[1]) ? "DJ no name" : dj[1]);
+                        djEntity.setSoundStyle(StringUtils.isEmpty(dj[2]) ? "no style" : dj[2]);
+                        djEntity.setVotes(StringUtils.isEmpty(dj[3]) ? DjBattleConstants.START_NUMBER_FOR_VOTES : Integer.valueOf(dj[3]).intValue());
+                        djEntity.setAvatarPicPath32(StringUtils.isEmpty(dj[4]) ? null : dj[4]);
+                        djEntity.setAvatarPicPathMain(StringUtils.isEmpty(dj[5]) ? null : dj[5]);
+                        mDjs.add(djEntity);
+                    }
+                }
+            }
+            
+            return true;
+        } catch (IOException e) {
+            System.out.println("Error while trying to import data from csv file... " + 
+                    e.getMessage());
+            return false;
+        }
+    }
+    
+    
+    /**
      * this method helps to fill test data to the app...
      * 
      * // TODO we need to read the data out of a config file or better a csv text file!
      */
-    private void setupDefaultData() {
+    private void setupAppWithDefaultData() {
         if (mDjs == null)
             mDjs = new ArrayList<>();
         

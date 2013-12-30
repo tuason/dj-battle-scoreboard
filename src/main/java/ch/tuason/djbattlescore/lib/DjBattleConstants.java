@@ -46,6 +46,15 @@ public interface DjBattleConstants {
     public static final String COLOR_RESULT_TITLE_TEXT = "#0076a3";
     public static final String FOOTER_AND_HEADER_BACKGROUND_STYLE = "-fx-background-color: #336699;";
     
+    
+    
+    
+    // RESOURCES CONSTANTS...
+    
+    // DATA FILE (djs.csv)
+    public static final String FILE_RESOURCE_DJS_CSV = "/data/djs.csv";
+    public static final String FILE_CVS_SPLIT_BY = ",";
+    
     // IMAGE CONSTANTS...
     public static final String IMAGE_RESOURCE_LOGO_KURHAUS = "/images/kurhaus_logo.png";
     public static final String IMAGE_RESOURCE_TURNTABLE_LOGO_32 = "/images/turntables32.jpg";
