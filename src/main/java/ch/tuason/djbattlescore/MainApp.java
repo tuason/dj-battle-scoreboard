@@ -29,6 +29,9 @@ public class MainApp extends Application {
         Scene scene = new Scene(root, DjBattleConstants.APP_MIN_SCENE_WIDTH, 
                 DjBattleConstants.APP_MIN_SCENE_HEIGHT);
         
+        stage.setMinWidth(DjBattleConstants.APP_MIN_SCENE_WIDTH);
+        stage.setMinHeight(DjBattleConstants.APP_MIN_SCENE_HEIGHT);
+        
         stage.setTitle(DjBattleConstants.APPLICATION_TITLE);
         stage.setScene(scene);
         stage.show();

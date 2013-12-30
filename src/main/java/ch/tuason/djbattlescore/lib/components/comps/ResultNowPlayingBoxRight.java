@@ -19,13 +19,13 @@
 package ch.tuason.djbattlescore.lib.components.comps;
 
 import ch.tuason.djbattlescore.lib.components.ComponentHandler;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.BorderPane;
 
 /**
  *
  * @author maesi
  */
-public class ResultNowPlayingBoxRight extends VBox {
+public class ResultNowPlayingBoxRight extends BorderPane {
  
     private final ComponentHandler mParent;
 
@@ -43,9 +43,9 @@ public class ResultNowPlayingBoxRight extends VBox {
     }
     
     
-    private void initializeComponents() {
-        getChildren().add(getComponentHandler().getResultLayout());
-        getChildren().add(getComponentHandler().getImageRotator());
+    private void initializeComponents() {        
+        setCenter(getComponentHandler().getResultLayout());
+        setBottom(getComponentHandler().getImageRotator());
     }
     
     
