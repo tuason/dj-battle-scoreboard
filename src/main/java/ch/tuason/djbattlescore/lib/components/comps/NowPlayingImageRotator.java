@@ -83,7 +83,10 @@ public final class NowPlayingImageRotator extends GridPane {
                 try {
                     image = new Image(DjBattleConstants.IMAGE_RESOURCE_BASE_FOR_DJ_PICS + 
                         leadingDj.getAvatarPicPathMain());
-                    imageCache.put(leadingDj.getId(), image);
+                    
+                    if (!image.isError()) {
+                        imageCache.put(leadingDj.getId(), image);
+                    }
                 } catch(Exception e) {
                     System.out.println("the image for dj '" + 
                             leadingDj.getName() + 
@@ -91,7 +94,26 @@ public final class NowPlayingImageRotator extends GridPane {
                             e.getMessage());
                     image = null;
                 }
+                
+                try {
+                    // it might be an absolute path?
+                    if (image == null) {
+                        image = new Image(DjBattleConstants.ABSOLUTE_IMAGE_FILEPATH_PREFIX + 
+                                leadingDj.getAvatarPicPathMain());
+                        if (!image.isError()) {
+                            imageCache.put(leadingDj.getId(), image);
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("the image for dj '" + 
+                            leadingDj.getName() + 
+                            "' could not be loaded for the image rotator... " + 
+                            e.getMessage());
+                    image = null;
+                }
+                
             }
+            
             if (image == null) {
                 image = getStandardImage();
             }
@@ -156,5 +178,14 @@ public final class NowPlayingImageRotator extends GridPane {
                     DjBattleConstants.COLOR_RESULT_TITLE_TEXT));
         }    
         return titleLabel;
+    }
+    
+    
+    /**
+     * clears all data and removes the image...
+     */
+    public void clearImageCacheAndData() {
+        this.imageCache.clear();
+        removeCurrentPlayImage();
     }
 }

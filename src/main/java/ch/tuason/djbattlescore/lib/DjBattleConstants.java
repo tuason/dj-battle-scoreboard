@@ -24,6 +24,10 @@ package ch.tuason.djbattlescore.lib;
  */
 public interface DjBattleConstants {
     
+    // PREFIXES FOR ABSOLUTE FILE PATH FOR DJ PICTURES...
+    public static final String ABSOLUTE_IMAGE_FILEPATH_PREFIX = "file:";
+    
+    
     // APPLICATION VARIABLES...
     public static final String APPLICATION_TITLE = "...::: DJ Battle Scoreboard - Kurhaus Lenzerheide :::...";
     

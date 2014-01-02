@@ -87,7 +87,27 @@ public class ResultGridPane extends GridPane {
                             djImage = new Image(getClass().getResourceAsStream(
                                 DjBattleConstants.IMAGE_RESOURCE_BASE_FOR_DJ_PICS + 
                                 dj.getAvatarPicPath32()));
-                            imageCache.put(dj.getId(), djImage);
+                            if (!djImage.isError()) {
+                                imageCache.put(dj.getId(), djImage);
+                            }
+                        } catch (Exception e) {
+                            System.out.println("the image for dj '" + 
+                                dj.getName() + 
+                                "' could not be loaded for the avatar image... " + 
+                                e.getMessage());
+                            djImage = null;
+                        }
+                    }
+                    
+                    
+                    // it might be an absolute path?
+                    if (djImage == null) {
+                        try {
+                            djImage = new Image(DjBattleConstants.ABSOLUTE_IMAGE_FILEPATH_PREFIX + 
+                                    dj.getAvatarPicPath32());
+                            if (!djImage.isError()) {
+                                imageCache.put(dj.getId(), djImage);
+                            }
                         } catch (Exception e) {
                             System.out.println("the image for dj '" + 
                                 dj.getName() + 
@@ -180,5 +200,14 @@ public class ResultGridPane extends GridPane {
     
     private ComponentHandler getComponentHandler() {
         return this.mParent;
+    }
+    
+    
+    /**
+     * clears all data and removes the current dj ranking...
+     */
+    public void clearImageCacheAndData() {
+        this.imageCache.clear();
+        removeCurrentDJRanking();
     }
 }

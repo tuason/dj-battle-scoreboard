@@ -103,6 +103,16 @@ public class DataHandler {
         }
     }
     
+    /**
+     * clears all data and components...
+     */
+    private void clearAllDJAndCacheData() {
+        mDjs.clear();
+        // mDjs = null;
+        getController().getComponentHandler().getImageRotator().clearImageCacheAndData();
+        getController().getComponentHandler().getResultLayout().clearImageCacheAndData();
+    }
+    
     
     public void increaseVotesForDj(DjEntity dj) {
         if (dj != null) {
@@ -111,46 +121,66 @@ public class DataHandler {
     }
     
     
+    
+    public boolean readCSVFileFromBufferedReader(BufferedReader br, boolean clearDataBeforeRead) {
+        if (br == null) {
+            return false;
+        } else {
+            if (clearDataBeforeRead) {
+                clearAllDJAndCacheData();
+            }
+            try {
+                String line = "";
+
+                while ((line = br.readLine()) != null) {
+                    String[] dj = line.split(DjBattleConstants.FILE_CVS_SPLIT_BY, line.length()-1);
+                    if (dj.length > 0) {
+                        if (!dj[0].equalsIgnoreCase("id")) {
+                            DjEntity djEntity = new DjEntity();
+                            djEntity.setId(Long.valueOf(dj[0]));
+                            djEntity.setName(StringUtils.isEmpty(dj[1]) ? "DJ no name" : dj[1]);
+                            djEntity.setSoundStyle(StringUtils.isEmpty(dj[2]) ? "no style" : dj[2]);
+                            djEntity.setVotes(StringUtils.isEmpty(dj[3]) ? DjBattleConstants.START_NUMBER_FOR_VOTES : Integer.valueOf(dj[3]).intValue());
+                            djEntity.setAvatarPicPath32(StringUtils.isEmpty(dj[4]) ? null : dj[4]);
+                            djEntity.setAvatarPicPathMain(StringUtils.isEmpty(dj[5]) ? null : dj[5]);
+                            mDjs.add(djEntity);
+                        }
+                    }
+                }
+
+                return true;
+            } 
+            catch (IOException e) {
+                System.out.println("Error while trying to import data from csv file... " + 
+                    e.getMessage());
+                return false;
+            }
+        }
+    }
+    
+    
+    
     /**
      * this method imports the data from a certain djs.csv file which is placed in the resource directory "data"...
      * 
      * @return true or false, whether the method was successfully or not...
      */
     private boolean importDataFromDjsCSVFile() {
-        try {
-            if (mDjs == null)
-                mDjs = new ArrayList<>();
+        
+        if (mDjs == null)
+            mDjs = new ArrayList<>();
             
-            BufferedReader br = new BufferedReader(new InputStreamReader(
-                  this.getClass().getResourceAsStream(
+        BufferedReader br = new BufferedReader(new InputStreamReader(
+            this.getClass().getResourceAsStream(
                           DjBattleConstants.FILE_RESOURCE_DJS_CSV)));
             
-            String line = "";
-            
-            while ((line = br.readLine()) != null) {
-                String[] dj = line.split(DjBattleConstants.FILE_CVS_SPLIT_BY, line.length()-1);
-                if (dj.length > 0) {
-                    if (!dj[0].equalsIgnoreCase("id")) {
-                        DjEntity djEntity = new DjEntity();
-                        djEntity.setId(Long.valueOf(dj[0]));
-                        djEntity.setName(StringUtils.isEmpty(dj[1]) ? "DJ no name" : dj[1]);
-                        djEntity.setSoundStyle(StringUtils.isEmpty(dj[2]) ? "no style" : dj[2]);
-                        djEntity.setVotes(StringUtils.isEmpty(dj[3]) ? DjBattleConstants.START_NUMBER_FOR_VOTES : Integer.valueOf(dj[3]).intValue());
-                        djEntity.setAvatarPicPath32(StringUtils.isEmpty(dj[4]) ? null : dj[4]);
-                        djEntity.setAvatarPicPathMain(StringUtils.isEmpty(dj[5]) ? null : dj[5]);
-                        mDjs.add(djEntity);
-                    }
-                }
-            }
-            
-            return true;
-        } catch (IOException e) {
-            System.out.println("Error while trying to import data from csv file... " + 
-                    e.getMessage());
-            return false;
-        }
+        return readCSVFileFromBufferedReader(br, false);
     }
     
+    
+    private MainController getController() {
+        return this.mMainController;
+    }
     
     /**
      * this method helps to fill test data to the app...

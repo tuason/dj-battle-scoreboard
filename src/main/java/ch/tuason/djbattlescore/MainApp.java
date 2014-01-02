@@ -4,7 +4,10 @@ import ch.tuason.djbattlescore.lib.DjBattleConstants;
 import ch.tuason.djbattlescore.lib.MainController;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
@@ -31,6 +34,16 @@ public class MainApp extends Application {
         
         stage.setMinWidth(DjBattleConstants.APP_MIN_SCENE_WIDTH);
         stage.setMinHeight(DjBattleConstants.APP_MIN_SCENE_HEIGHT);
+        
+        // make it possible to impoart data with "shift control enter" keys pressed...
+        stage.addEventFilter(KeyEvent.ANY, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER && event.isShiftDown() && event.isControlDown()) {
+                    getController().getComponentHandler().showCSVImportDialog();
+                }
+            }
+        });
         
         stage.setTitle(DjBattleConstants.APPLICATION_TITLE);
         stage.setScene(scene);

@@ -50,5 +50,10 @@ public class MainLayoutPane extends BorderPane {
     private ComponentHandler getComponentHandler() {
         return this.mParent;
     }
+ 
     
+    public void reloadBarChartWithNewData() {
+        getComponentHandler().clearBarchart();
+        setCenter(getComponentHandler().getScoreBoardChart());
+    }
 }

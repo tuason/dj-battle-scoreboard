@@ -78,7 +78,6 @@ public class BattleBarChart extends StackedBarChart {
     }
     
     
-    
     public final void resetChartAndAllData() {
         getController().getDataHandler().clearAllVotesBackToZero();
         resetUpperBoundForYAxis();

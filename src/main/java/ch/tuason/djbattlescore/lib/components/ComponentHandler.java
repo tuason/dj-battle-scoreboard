@@ -27,11 +27,17 @@ import ch.tuason.djbattlescore.lib.components.comps.NowPlayingImageRotator;
 import ch.tuason.djbattlescore.lib.components.comps.ResultGridPane;
 import ch.tuason.djbattlescore.lib.components.comps.ResultNowPlayingBoxRight;
 import ch.tuason.djbattlescore.lib.data.entities.DjEntity;
-import java.util.Collection;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.stage.FileChooser;
 
 /**
  *
@@ -71,6 +77,11 @@ public class ComponentHandler {
         return mMainLayout;
     }
     
+    
+    
+    public void clearBarchart() {
+        this.scoreBoardChart = null;
+    }
     
     
     /**
@@ -191,6 +202,35 @@ public class ComponentHandler {
         
     }
     */
+    
+    /**
+     * opens a Import Dialog to import a CSV file...
+     */
+    public void showCSVImportDialog() {
+        FileChooser fileChooser = new FileChooser();
+            
+        //Set extension filter
+        FileChooser.ExtensionFilter extFilterCVS = new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.CSV");
+        fileChooser.getExtensionFilters().addAll(extFilterCVS);
+             
+        //Show open file dialog
+        File file = fileChooser.showOpenDialog(null);
+                      
+        BufferedReader br;
+        try {
+            br = new BufferedReader(new FileReader(file.getAbsolutePath()));
+            if (getController().getDataHandler().readCSVFileFromBufferedReader(br, true)) {
+                System.out.println("CSV data successfully imported... updating the app layout!");
+                getMainLayout().reloadBarChartWithNewData();
+                updateDjRanking();
+            } else {
+                System.out.println("Something with importing the CSV data went absolutely wrong!");
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println("Could not find the file to load...");
+            Logger.getLogger(ComponentHandler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
     
     public void updateDjRanking() {
