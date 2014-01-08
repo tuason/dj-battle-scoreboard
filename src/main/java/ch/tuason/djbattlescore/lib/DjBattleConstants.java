@@ -29,7 +29,8 @@ public interface DjBattleConstants {
     
     
     // APPLICATION VARIABLES...
-    public static final String APPLICATION_TITLE = "...::: DJ Battle Scoreboard - Kurhaus Lenzerheide :::...";
+    public static final String APPLICATION_TITLE = "...::: DJ Roulette Scoreboard - Kurhaus Lenzerheide :::...";
+    public static final String HEADER_TITLE = ". . . : : :   DJ Roulette   : : : . . .";
     
     public static final Integer APP_MIN_SCENE_WIDTH = 1024;
     public static final Integer APP_MIN_SCENE_HEIGHT = 850;
@@ -61,6 +62,7 @@ public interface DjBattleConstants {
     
     // IMAGE CONSTANTS...
     public static final String IMAGE_RESOURCE_LOGO_KURHAUS = "/images/kurhaus_logo.png";
+    public static final String IMAGE_RESOURCE_LOGO_PARTY_SPONSOR = "images/ho_logo.png";
     public static final String IMAGE_RESOURCE_TURNTABLE_LOGO_32 = "/images/turntables32.jpg";
     public static final String IMAGE_RESOURCE_TURNTABLE_LOGO_48 = "/images/turntables48.jpg";
     

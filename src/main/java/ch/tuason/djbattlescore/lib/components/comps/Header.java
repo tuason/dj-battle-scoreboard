@@ -26,6 +26,7 @@ import javafx.scene.effect.Effect;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -34,7 +35,7 @@ import javafx.scene.text.Font;
  *
  * @author maesi
  */
-public class Header extends HBox {
+public class Header extends BorderPane {
 
     /**
      * constructor
@@ -50,21 +51,42 @@ public class Header extends HBox {
      */    
     private void initializeHeader() {
         setPadding(new Insets(15, 12, 15, 12));
-        setSpacing(10);
+        
+        HBox leftWrapper = new HBox();
+        leftWrapper.setSpacing(10);
+        leftWrapper.setAlignment(Pos.BOTTOM_LEFT);
+        
         setStyle(DjBattleConstants.FOOTER_AND_HEADER_BACKGROUND_STYLE);
         
-        Image imageKurhaus = new Image("/images/kurhaus_logo.png");
+        Image imageKurhaus = new Image(DjBattleConstants.IMAGE_RESOURCE_LOGO_KURHAUS);
         ImageView imageViewKurhaus = new ImageView(imageKurhaus);
-        Label title = new Label("  ...::: DJ Battle Scoreboard :::...");
         
+        Image imageSponsor = new Image(DjBattleConstants.IMAGE_RESOURCE_LOGO_PARTY_SPONSOR);
+        ImageView imageViewSponsor = new ImageView(imageSponsor);
+        
+        leftWrapper.getChildren().addAll(imageViewKurhaus);
+        
+        HBox centerWrapper = new HBox();
+        centerWrapper.setSpacing(10);
+        centerWrapper.setAlignment(Pos.CENTER);
+        
+        Label title = new Label(DjBattleConstants.HEADER_TITLE);
         title.setFont(new Font("Arial", 40));
         title.setTextFill(Color.web("#FFFFFF"));
         final Effect glow = new Glow(1.0);
         title.setEffect(glow);
         
-        setAlignment(Pos.BOTTOM_LEFT);
+        centerWrapper.getChildren().add(title);
         
-        getChildren().addAll(imageViewKurhaus, title);
+        HBox rightWrapper = new HBox();
+        rightWrapper.setSpacing(10);
+        rightWrapper.setAlignment(Pos.BOTTOM_RIGHT);
+        
+        rightWrapper.getChildren().add(imageViewSponsor);
+        
+        setLeft(leftWrapper);
+        setCenter(centerWrapper);
+        setRight(rightWrapper);
     }
     
     
