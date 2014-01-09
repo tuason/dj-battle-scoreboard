@@ -51,7 +51,8 @@ public class DataHandler {
     public List<DjEntity> getDJList() {
         if (mDjs == null) {
             if (! importDataFromDjsCSVFile()) {
-                setupAppWithDefaultData();
+                // setupAppWithTestDefaultData();
+                System.out.println("Error while trying to load default data...");
             }
         }
         return mDjs;
@@ -108,12 +109,17 @@ public class DataHandler {
      */
     private void clearAllDJAndCacheData() {
         mDjs.clear();
-        // mDjs = null;
         getController().getComponentHandler().getImageRotator().clearImageCacheAndData();
         getController().getComponentHandler().getResultLayout().clearImageCacheAndData();
     }
     
     
+    /**
+     * increases a vote (+1) for one particular dj...
+     * 
+     * @param dj a DjEntity instance, which representste dj!
+     *
+     */
     public void increaseVotesForDj(DjEntity dj) {
         if (dj != null) {
             dj.setVotes(dj.getVotes() + 1);
@@ -121,7 +127,18 @@ public class DataHandler {
     }
     
     
-    
+    /**
+     * method which reads a .CSV-file over an existing BufferedReader...
+     * 
+     * @param br a BufferedReader where we can read from... the lines should 
+     * represent comma-seperated values in the following format:
+     *  id,name,soundStyle,votes,avatarPicPath32,avatarPicPathMain
+     *      
+     * @param clearDataBeforeRead boolean value whether the cached buffer needs 
+     * to be completey clearedä or not...
+     * 
+     * @return 
+     */
     public boolean readCSVFileFromBufferedReader(BufferedReader br, boolean clearDataBeforeRead) {
         if (br == null) {
             return false;
@@ -130,8 +147,7 @@ public class DataHandler {
                 clearAllDJAndCacheData();
             }
             try {
-                String line = "";
-
+                String line;
                 while ((line = br.readLine()) != null) {
                     String[] dj = line.split(DjBattleConstants.FILE_CVS_SPLIT_BY, line.length()-1);
                     if (dj.length > 0) {
@@ -182,53 +198,54 @@ public class DataHandler {
         return this.mMainController;
     }
     
-    /**
-     * this method helps to fill test data to the app...
-     * 
-     * // TODO we need to read the data out of a config file or better a csv text file!
-     */
-    private void setupAppWithDefaultData() {
-        if (mDjs == null)
-            mDjs = new ArrayList<>();
-        
-        DjEntity djOne = new DjEntity();
-        djOne.setId(new Long(1));
-        djOne.setName("DJ One");
-        djOne.setSoundStyle("Nu-Beatz");
-        djOne.setVotes(23);
-        djOne.setAvatarPicPath32("dj_avatar_1_32.jpg");
-        mDjs.add(djOne);
-        
-        DjEntity djTwo = new DjEntity();
-        djTwo.setId(new Long(2));
-        djTwo.setName("DJ Two");
-        djTwo.setSoundStyle("Hip-Hop");
-        djTwo.setVotes(34);
-        djTwo.setAvatarPicPath32("dj_avatar_2_32.jpg");
-        mDjs.add(djTwo);
-        
-        DjEntity djThree = new DjEntity();
-        djThree.setId(new Long(3));
-        djThree.setName("DJ Three");
-        djThree.setSoundStyle("Urban");
-        djThree.setVotes(14);
-        //djThree.setAvatarPicPath32("dj_avatar_3_32.jpg");
-        mDjs.add(djThree);
-        
-        DjEntity djFour = new DjEntity();
-        djFour.setId(new Long(4));
-        djFour.setName("DJ Four");
-        djFour.setSoundStyle("House");
-        djFour.setVotes(9);
-        //djFour.setAvatarPicPath32("dj_avatar_4_32.jpg");
-        mDjs.add(djFour);
-            
-        DjEntity djFive = new DjEntity();
-        djFive.setId(new Long(5));
-        djFive.setName("DJ Five");
-        djFive.setSoundStyle("Electro");
-        djFive.setVotes(21);
-        djFive.setAvatarPicPath32("dj_avatar_5_32.jpg");
-        mDjs.add(djFive);
-    }
+//    
+//    /**
+//     * this method helps to fill test data to the app...
+//     * 
+//     * // TODO we need to read the data out of a config file or better a csv text file!
+//     */
+//    private void setupAppWithTestDefaultData() {
+//        if (mDjs == null)
+//            mDjs = new ArrayList<>();
+//        
+//        DjEntity djOne = new DjEntity();
+//        djOne.setId(new Long(1));
+//        djOne.setName("DJ One");
+//        djOne.setSoundStyle("Nu-Beatz");
+//        djOne.setVotes(23);
+//        djOne.setAvatarPicPath32("dj_avatar_1_32.jpg");
+//        mDjs.add(djOne);
+//        
+//        DjEntity djTwo = new DjEntity();
+//        djTwo.setId(new Long(2));
+//        djTwo.setName("DJ Two");
+//        djTwo.setSoundStyle("Hip-Hop");
+//        djTwo.setVotes(34);
+//        djTwo.setAvatarPicPath32("dj_avatar_2_32.jpg");
+//        mDjs.add(djTwo);
+//        
+//        DjEntity djThree = new DjEntity();
+//        djThree.setId(new Long(3));
+//        djThree.setName("DJ Three");
+//        djThree.setSoundStyle("Urban");
+//        djThree.setVotes(14);
+//        //djThree.setAvatarPicPath32("dj_avatar_3_32.jpg");
+//        mDjs.add(djThree);
+//        
+//        DjEntity djFour = new DjEntity();
+//        djFour.setId(new Long(4));
+//        djFour.setName("DJ Four");
+//        djFour.setSoundStyle("House");
+//        djFour.setVotes(9);
+//        //djFour.setAvatarPicPath32("dj_avatar_4_32.jpg");
+//        mDjs.add(djFour);
+//            
+//        DjEntity djFive = new DjEntity();
+//        djFive.setId(new Long(5));
+//        djFive.setName("DJ Five");
+//        djFive.setSoundStyle("Electro");
+//        djFive.setVotes(21);
+//        djFive.setAvatarPicPath32("dj_avatar_5_32.jpg");
+//        mDjs.add(djFive);
+//    }
 }

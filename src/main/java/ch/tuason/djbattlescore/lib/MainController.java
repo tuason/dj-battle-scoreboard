@@ -36,31 +36,16 @@ public class MainController {
     /**
      * constructor
      * 
-     * @param mainApp 
+     * @param mainApp the instance of the main application...
      */
     public MainController(MainApp mainApp) {
         this.mMainApplication = mainApp;
+    }
         
-        initializeData();
-    }
-    
-    
-    private void initializeData() {
-        System.out.println("--> trying to initialize the data for the app...");
-        try {
-            // TODO read data from a csv file in the root, otherwise just take the default data...
-            //getDataHandler().setupDefaultData();
-            System.out.println("--> data successfully initialized...");
-        } catch (Exception e) {
-            System.out.println("--> error while trying to initialize the data..." + 
-                    " shutting down the app!");
-        }
-    }
-    
-    
     /**
      * returns a data handler instance...
-     * @return 
+     * 
+     * @return the DataHandler instance of the app...
      */
     public DataHandler getDataHandler() {
         if (mDataHandler == null) {
@@ -70,6 +55,11 @@ public class MainController {
     }
  
     
+    /**
+     * returns the component handler instance...
+     * 
+     * @return ComponentHandler instance...
+     */
     public ComponentHandler getComponentHandler() {
         if (mComponentHandler == null) {
             mComponentHandler = new ComponentHandler(this);
@@ -78,6 +68,11 @@ public class MainController {
     }
     
     
+    /**
+     * method which returns the current main application.
+     * 
+     * @return MainApp instance...
+     */
     public MainApp getMainApplicationInstance() {
         return this.mMainApplication;
     }

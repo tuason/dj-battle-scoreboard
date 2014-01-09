@@ -29,7 +29,11 @@ public class MainLayoutPane extends BorderPane {
     
     private ComponentHandler mParent;
 
-    
+    /**
+     * constructor
+     * 
+     * @param componentHandler the parent ComponentHandler instance...
+     */
     public MainLayoutPane(ComponentHandler componentHandler) {
         super();
         this.mParent = componentHandler;
@@ -37,23 +41,32 @@ public class MainLayoutPane extends BorderPane {
         initializeMainLayoutPane();
     }
     
-    
+    /**
+     * initialized the main layout panel...
+     */
     private void initializeMainLayoutPane() {
         setTop(getComponentHandler().getHeader());
         setCenter(getComponentHandler().getScoreBoardChart());
-        //setRight(getComponentHandler().getResultLayout());
         setRight(getComponentHandler().getResultAndPlayNowLayout());
         setBottom(getComponentHandler().getFooter());
     }
+
+    /**
+     * a public method to reload the bar chart with complete new memory data... this
+     * method is mainly used after a reload of a csv-file over the file load dialog
+     * <ctrl> + <shift> + <enter>
+     */
+    public void reloadBarChartWithNewData() {
+        getComponentHandler().nullBarchartComponent();
+        setCenter(getComponentHandler().getScoreBoardChart());
+    }
     
-    
+    /**
+     * returns the ComponentHandler instance...
+     * 
+     * @return a ComponentHandler instance...
+     */
     private ComponentHandler getComponentHandler() {
         return this.mParent;
-    }
- 
-    
-    public void reloadBarChartWithNewData() {
-        getComponentHandler().clearBarchart();
-        setCenter(getComponentHandler().getScoreBoardChart());
     }
 }

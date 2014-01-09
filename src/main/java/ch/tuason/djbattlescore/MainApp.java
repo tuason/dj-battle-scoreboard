@@ -19,14 +19,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //Parent root = FXMLLoader.load(getClass().getResource(cFXML_FILE_RESOURCE));
-        //Scene scene = new Scene(root);
-        //scene.getStylesheets().add(cCSS_FILE_RESOURCE);
-        
         StackPane root = new StackPane();
-        //root.getChildren().add(getController().getComponentHandler().getScoreBoardChart());
-        // root.getChildren().add(getController().getComponentHandler().getFooter());
-        // root.getChildren().add(btn);
         root.getChildren().add(getController().getComponentHandler().getMainLayout());
         
         Scene scene = new Scene(root, DjBattleConstants.APP_MIN_SCENE_WIDTH, 

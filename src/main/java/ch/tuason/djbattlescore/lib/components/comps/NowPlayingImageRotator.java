@@ -183,9 +183,21 @@ public final class NowPlayingImageRotator extends GridPane {
     
     /**
      * clears all data and removes the image...
+     * 
+     * @param loadStandardImage boolean true/false whether the standard image 
+     * should be loaded or not after clear the image chache and all default 
+     * votes are the same...
      */
     public void clearImageCacheAndData() {
         this.imageCache.clear();
         removeCurrentPlayImage();
+    }
+    
+    /**
+     * adds a standard image to the current playing image rotator...
+     */
+    public void addStandardImage() {
+        removeCurrentPlayImage();
+        getImageView().setImage(getStandardImage());
     }
 }

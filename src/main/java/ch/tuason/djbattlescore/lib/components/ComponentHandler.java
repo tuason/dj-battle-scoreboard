@@ -78,8 +78,10 @@ public class ComponentHandler {
     }
     
     
-    
-    public void clearBarchart() {
+    /**
+     * method to null the bar chart instance...
+     */
+    public void nullBarchartComponent() {
         this.scoreBoardChart = null;
     }
     
@@ -126,7 +128,7 @@ public class ComponentHandler {
     /**
      * returns an image rotator with the currently playing dj...
      * 
-     * @return 
+     * @return a NowPlayingImageRotator instance...
      */
     public NowPlayingImageRotator getImageRotator() {
         if (imageRotator == null) {
@@ -136,29 +138,17 @@ public class ComponentHandler {
     }
     
     
-    /*
-    public BarChart getScoreBoardChartOriginalStyle() {
-        if (scoreBoardChart == null) {
-            
-            final NumberAxis yAxis = new NumberAxis();
-            final CategoryAxis xAxis = new CategoryAxis();
-            
-            scoreBoardChart = new BarChart(xAxis, yAxis);
-            scoreBoardChart.setTitle("Kurhaus DJ Battle Scoreboard");
-        }
-        return scoreBoardChart;
-    }
-    */
-    
-    
-    
+    /**
+     * returns the footer component...
+     * 
+     * @return a Footer instance...
+     */
     public Footer getFooter() {
         if (footer == null) {
             footer = new Footer(new EventHandler<ActionEvent>() {
 
                 @Override
                 public void handle(ActionEvent t) {
-                    
                     Platform.exit();
                 }
                 
@@ -185,23 +175,6 @@ public class ComponentHandler {
         return header;
     }
    
-    /*
-    public Button getSayHiButton() {
-        if (sayHiButton == null) {
-            sayHiButton = new Button();
-            sayHiButton.setText("Say 'Hi Kurhaus'");
-            sayHiButton.setOnAction(new EventHandler<ActionEvent>() {
-
-                @Override
-                public void handle(ActionEvent event) {
-                    System.out.println("Hi, this is the Kurhaus scoreboard!");
-                }
-            });
-        }
-        return sayHiButton;
-        
-    }
-    */
     
     /**
      * opens a Import Dialog to import a CSV file...
@@ -232,14 +205,40 @@ public class ComponentHandler {
         }
     }
     
-    
+    /**
+     * method to update the dj ranking...
+     */
     public void updateDjRanking() {
         List<DjEntity> results = getController().getDataHandler().getSortedAfterRankDjList();
         getResultLayout().removeCurrentDJRanking();
         if (!results.isEmpty()) {
             getResultLayout().addCurrentDJRanking(results);
-            getImageRotator().updateCurrentlyPlayingImage(results.get(0));
+            if (areAllVotesEqual(results)) {
+                getImageRotator().addStandardImage();
+            } else {
+                getImageRotator().updateCurrentlyPlayingImage(results.get(0));
+            }
         }
+    }
+    
+    /**
+     * checks whether all votes of the dj's are equal or not...
+     * @param listOfDjs
+     * @return boolean true or false whether the votes of the dj's are equal or
+     * not...
+     */
+    private boolean areAllVotesEqual(List<DjEntity> listOfDjs) {
+        int lastVote = -1;
+        for (DjEntity dj : listOfDjs) {
+            if (lastVote == -1) {
+                lastVote = dj.getVotes();
+            } else {
+                if (lastVote != dj.getVotes()) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
     
     

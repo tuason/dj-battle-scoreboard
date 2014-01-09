@@ -71,17 +71,5 @@ public interface DjBattleConstants {
     public static final String IMAGE_RESOURCE_BASE_FOR_DJ_PICS = "/images/dj/";
     
     // IMAGE CONSTANTS FOR STANDARD DJ'S...
-    public static final String IMAGE_RESOURCE_PLAYING_NOW_STANDARD = "/images/dj/standard_image.jpg";
-    
-//    public static final String IMAGE_RESOURCE_DJ_AVATAR_1_32 = "/images/dj/dj_avatar_1_32.jpg";
-//    public static final String IMAGE_RESOURCE_DJ_AVATAR_2_32 = "/images/dj/dj_avatar_2_32.jpg";
-//    public static final String IMAGE_RESOURCE_DJ_AVATAR_3_32 = "/images/dj/dj_avatar_3_32.jpg";
-//    public static final String IMAGE_RESOURCE_DJ_AVATAR_4_32 = "/images/dj/dj_avatar_4_32.jpg";
-//    public static final String IMAGE_RESOURCE_DJ_AVATAR_5_32 = "/images/dj/dj_avatar_5_32.jpg";
-//    
-//    public static final String IMAGE_RESOURCE_DJ_AVATAR_1 = "/images/dj/dj_avatar_1.jpg";
-//    public static final String IMAGE_RESOURCE_DJ_AVATAR_2 = "/images/dj/dj_avatar_2.jpg";
-//    public static final String IMAGE_RESOURCE_DJ_AVATAR_3 = "/images/dj/dj_avatar_3.jpg";
-//    public static final String IMAGE_RESOURCE_DJ_AVATAR_4 = "/images/dj/dj_avatar_4.jpg";
-//    public static final String IMAGE_RESOURCE_DJ_AVATAR_5 = "/images/dj/dj_avatar_5.jpg";
+    public static final String IMAGE_RESOURCE_PLAYING_NOW_STANDARD = "/images/dj/standard_image.jpg";    
 }
