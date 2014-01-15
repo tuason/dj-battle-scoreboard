@@ -40,7 +40,8 @@ import javafx.event.EventHandler;
 import javafx.stage.FileChooser;
 
 /**
- *
+ * the ui components handler...
+ * 
  * @author maesi
  */
 public class ComponentHandler {

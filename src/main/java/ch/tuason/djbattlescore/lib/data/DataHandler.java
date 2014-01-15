@@ -30,7 +30,7 @@ import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- *
+ * the data handler is an interface to all the data handling...
  * @author maesi
  */
 public class DataHandler {
@@ -135,7 +135,7 @@ public class DataHandler {
      *  id,name,soundStyle,votes,avatarPicPath32,avatarPicPathMain
      *      
      * @param clearDataBeforeRead boolean value whether the cached buffer needs 
-     * to be completey clearedä or not...
+     * to be completey cleareeedä or not...
      * 
      * @return 
      */

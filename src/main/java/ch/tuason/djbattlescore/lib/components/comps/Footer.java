@@ -30,7 +30,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
 
 /**
- *
+ * the footer component...
+ * 
  * @author maesi
  */
 public class Footer extends BorderPane {
@@ -41,7 +42,6 @@ public class Footer extends BorderPane {
     private HBox copyright;
     private Label lblCopyright;
     private Label tuasonLink;
-    // private Hyperlink tuasonLink;
     
     private final EventHandler<ActionEvent> resetButtonEventHandler;
     private final EventHandler<ActionEvent> exitButtonEventHandler;
@@ -63,10 +63,8 @@ public class Footer extends BorderPane {
     
     private void initializeFooter() {
         setPadding(new Insets(15, 12, 15, 12));
-        //setSpacing(10);
         setStyle(DjBattleConstants.FOOTER_AND_HEADER_BACKGROUND_STYLE);
         setLeft(getCopyRight());
-        //setAlignment(Pos.CENTER_RIGHT);
         HBox buttonBox = new HBox();
         buttonBox.setSpacing(10);
         buttonBox.setAlignment(Pos.BOTTOM_LEFT);
@@ -122,11 +120,4 @@ public class Footer extends BorderPane {
         }
         return tuasonLink;
     }
-    
-//    private Hyperlink getTuasonLink() {
-//        if (tuasonLink == null) {
-//            tuasonLink = new Hyperlink("http://www.tuason.com.au", new Label("www.tuason.com.au"));
-//        }
-//        return tuasonLink;
-//    }
 }

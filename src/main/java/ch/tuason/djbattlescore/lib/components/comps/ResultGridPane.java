@@ -37,7 +37,8 @@ import javafx.scene.text.Font;
 import org.apache.commons.lang3.StringUtils;
 
 /**
- *
+ * the result grid pane... a visual list of the current ranking!
+ * 
  * @author maesi
  */
 public class ResultGridPane extends GridPane {
@@ -70,6 +71,11 @@ public class ResultGridPane extends GridPane {
     }
     
     
+    /**
+     * adds a certain DjEntity to the ranking grid panel...
+     * 
+     * @param results a Collection of DjEntity...
+     */
     public void addCurrentDJRanking(Collection<DjEntity> results) {
         this.addedRankingComponents.clear();
         this.currentDjRanking = results;
@@ -141,6 +147,13 @@ public class ResultGridPane extends GridPane {
         }
     }
     
+    /**
+     * determines whether a current ranking needs an update as the data shows
+     * different graphs to what the datas represent...
+     * 
+     * @return boolean true - update needed / false - data are still the same, 
+     * ignore updates!
+     */
     public boolean isDjRankingUpdateNeeded() {
         if (currentDjRanking == null || currentDjRanking.isEmpty())
             return true;
@@ -158,6 +171,9 @@ public class ResultGridPane extends GridPane {
         }
     }
     
+    /**
+     * removes alls ranking component
+     */
     public void removeCurrentDJRanking() {
         if (this.addedRankingComponents != null && !this.addedRankingComponents.isEmpty())
             getChildren().removeAll(this.addedRankingComponents);
@@ -193,11 +209,20 @@ public class ResultGridPane extends GridPane {
         return null;
     }
     
-    
+    /**
+     * returns the MVC main controller...
+     * 
+     * @return the one and only MainController instance...
+     */
     private MainController getController() {
         return getComponentHandler().getController();
     }
     
+    /**
+     * returns the ui component handler instance as ComponentHandler...
+     *
+     * @return a ComponentHandler instance...
+     */
     private ComponentHandler getComponentHandler() {
         return this.mParent;
     }

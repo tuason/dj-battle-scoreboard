@@ -33,7 +33,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 
 /**
- *
+ * the main bar chart ui component...
+ * 
  * @author maesi
  */
 public class BattleBarChart extends StackedBarChart {
@@ -55,7 +56,6 @@ public class BattleBarChart extends StackedBarChart {
         super(getXAxisObject(), getYAxisObject());
         this.mController = controller;
         
-        //getXAxisObject().setLabel("DJ");
         getYAxisObject().setLabel("Votes");
         
         this.setLegendVisible(false);
@@ -77,7 +77,9 @@ public class BattleBarChart extends StackedBarChart {
 //        }
     }
     
-    
+    /**
+     * resets all chart datas and updates the ranking afterwards...
+     */
     public final void resetChartAndAllData() {
         getController().getDataHandler().clearAllVotesBackToZero();
         resetUpperBoundForYAxis();
@@ -98,7 +100,12 @@ public class BattleBarChart extends StackedBarChart {
     }
     
     
-    
+    /**
+     * adds a certain serie to th chart...
+     * 
+     * @param serie Series object
+     * @return XYChart.Series
+     */
     private XYChart.Series addDataToSerie(XYChart.Series serie) {
         serie.getData().clear();
         for (DjEntity dj : getController().getDataHandler().getDJList()) {
@@ -225,7 +232,11 @@ public class BattleBarChart extends StackedBarChart {
         return xAxis;
     }
     
-    
+    /**
+     * returns the main controller instance...
+     * 
+     * @return 
+     */
     private MainController getController() {
         return this.mController;
     }

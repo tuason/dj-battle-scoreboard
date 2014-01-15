@@ -11,7 +11,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
-
+/**
+ * DJ Battle Score - the main app with its main method included.
+ * 
+ * @author maesi
+ */
 public class MainApp extends Application {
   
     private MainController mMainController;
@@ -32,7 +36,8 @@ public class MainApp extends Application {
         stage.addEventFilter(KeyEvent.ANY, new EventHandler<KeyEvent>() {
             @Override
             public void handle(KeyEvent event) {
-                if (event.getCode() == KeyCode.ENTER && event.isShiftDown() && event.isControlDown()) {
+                if (event.getCode() == KeyCode.ENTER && event.isShiftDown() && 
+                        event.isControlDown()) {
                     getController().getComponentHandler().showCSVImportDialog();
                 }
             }

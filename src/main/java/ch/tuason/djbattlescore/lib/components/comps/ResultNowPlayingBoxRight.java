@@ -23,7 +23,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 
 /**
- *
+ * a layout for the "current playing" and "ranking components"...
+ * 
  * @author maesi
  */
 public class ResultNowPlayingBoxRight extends BorderPane {
@@ -46,10 +47,9 @@ public class ResultNowPlayingBoxRight extends BorderPane {
     
     
     private void initializeComponents() {        
-        //setCenter(getComponentHandler().getResultLayout());
-        //setBottom(getComponentHandler().getImageRotator());
         setCenter(getMainContent());
     }
+    
     
     private VBox getMainContent() {
         if (mainContent == null) {

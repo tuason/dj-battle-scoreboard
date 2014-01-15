@@ -19,7 +19,9 @@
 package ch.tuason.djbattlescore.lib;
 
 /**
- *
+ * a collection of constants / finalized variables to handle some app settings,
+ * collors, look & feel and project pathes...
+ * 
  * @author maesi
  */
 public interface DjBattleConstants {
@@ -35,9 +37,6 @@ public interface DjBattleConstants {
     public static final Integer APP_MIN_SCENE_WIDTH = 1024;
     public static final Integer APP_MIN_SCENE_HEIGHT = 850;
     
-    // private final String cCSS_FILE_RESOURCE = "/styles/Styles.css";
-    // private final String cFXML_FILE_RESOURCE = "/fxml/Scene.fxml";
-
     public static final Integer START_NUMBER_FOR_VOTES = 10;
     
     public static final Integer CHART_STANDARD_TICK_UNIT_STEPS = 10;

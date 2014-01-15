@@ -23,7 +23,9 @@ import ch.tuason.djbattlescore.lib.components.ComponentHandler;
 import ch.tuason.djbattlescore.lib.data.DataHandler;
 
 /**
- *
+ * the main controller as an interface between several MVC components and 
+ * classes...
+ * 
  * @author maesi
  */
 public class MainController {

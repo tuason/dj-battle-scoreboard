@@ -22,7 +22,8 @@ import ch.tuason.djbattlescore.lib.components.ComponentHandler;
 import javafx.scene.layout.BorderPane;
 
 /**
- *
+ * the mainlayout panel...
+ * 
  * @author maesi
  */
 public class MainLayoutPane extends BorderPane {

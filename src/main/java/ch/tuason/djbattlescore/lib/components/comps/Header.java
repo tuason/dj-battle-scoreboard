@@ -32,7 +32,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 
 /**
- *
+ * the header component...
+ * 
  * @author maesi
  */
 public class Header extends BorderPane {

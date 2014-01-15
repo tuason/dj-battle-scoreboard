@@ -87,19 +87,6 @@ public class DjEntity implements Comparable {
     
     
     
-    /*
-    public int getRank() {
-        return rank;
-    }
-
-    public void setRank(int rank) {
-        this.rank = rank;
-    }
-    */
-    
-    
-    
-    
     @Transient
     public String getDjNameWithSoundStyle() {
         return this.getName() + " (" + this.getSoundStyle() + ")";
@@ -120,16 +107,6 @@ public class DjEntity implements Comparable {
         } else if (getVotes() > compareObject.getVotes()) {
             return -1;
         }
-        
-        /*
-        if (getRank() < compareObject.getRank()) {
-            return +1;
-        } else if (getRank() == compareObject.getRank()) {
-            return 0;
-        } else if (getRank() > compareObject.getRank()) {
-            return -1;
-        }
-        */
         
         return -1;
     }
